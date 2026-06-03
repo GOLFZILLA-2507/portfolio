@@ -689,35 +689,50 @@ section {
   border-color: var(--navy);
 }
 
-/* Progress bars สำหรับ soft skills */
-.skill-bar-wrap {
-  margin-bottom: 10px;
+.soft-skills-grid {
+  display: grid;
+  gap: 18px;
+  max-width: 720px;
 }
-.skill-bar-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  color: var(--text);
-  margin-bottom: 5px;
-  font-weight: 500;
+.soft-skill-card {
+  background: var(--section-bg);
+  border: 1px solid var(--border);
+  border-top: 4px solid rgba(29,111,164,0.35);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 12px 28px rgba(13,40,70,0.04);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
-.skill-bar-label span:last-child {
+.soft-skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(29,111,164,0.10);
+  border-color: var(--blue-light);
+}
+.soft-skill-card:hover {
+  border-top-color: var(--blue);
+}
+.soft-skill-card h4 {
+  font-family: 'Kanit', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 14px 0 8px;
+}
+.soft-skill-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.soft-skill-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(29,111,164,0.12);
   color: var(--blue);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-}
-.skill-bar-bg {
-  height: 6px;
-  background: var(--border);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.skill-bar-fill {
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(to right, var(--blue), var(--blue-light));
-  width: 0%; /* เริ่มที่ 0 แล้ว animate เมื่อ visible */
-  transition: width 1s ease;
+  font-size: 20px;
 }
 
 /* ===================================================
@@ -757,6 +772,7 @@ section {
 .thumb-blue { background: linear-gradient(135deg, #0f2d52, #1d6fa4); }
 .thumb-teal { background: linear-gradient(135deg, #0a2b2b, #0d7377); }
 .thumb-purple { background: linear-gradient(135deg, #1a0a3c, #5a2d91); }
+.thumb-green { background: linear-gradient(135deg, #0a2b12, #1a8a3a); }
 .thumb-green { background: linear-gradient(135deg, #0a2b12, #1a8a3a); }
 
 .project-thumb-icon {
@@ -820,6 +836,10 @@ section {
   background: var(--navy);
   position: relative;
   overflow: hidden;
+
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 #contact::before {
   content: '';
