@@ -534,28 +534,71 @@
         </div>
       </div>
 
-      <!-- ขวา: ฟอร์มติดต่อ (สำหรับ static site — เชื่อม Formspree หรือ EmailJS ได้) -->
-      <div class="reveal reveal-d2">
-        <div class="contact-form">
-          <div class="form-group">
-            <label>ชื่อของคุณ</label>
-            <input type="text" class="form-input" placeholder="เช่น สมชาย ใจดี">
-          </div>
-          <div class="form-group">
-            <label>อีเมล</label>
-            <input type="email" class="form-input" placeholder="example@email.com">
-          </div>
-          <div class="form-group">
-            <label>ข้อความ</label>
-            <textarea class="form-input" placeholder="สวัสดีครับ ผมสนใจ..."></textarea>
-          </div>
-          <!-- เชื่อมกับ Formspree: action="https://formspree.io/f/YOUR_ID" method="POST" -->
-          <button class="btn-primary" onclick="handleFormSubmit(this)" style="align-self:flex-start;">
-            ส่งข้อความ ✉️
-          </button>
-          <p id="form-msg" style="font-size:13px;color:rgba(255,255,255,0.5);display:none;">
-            ✅ ส่งข้อความแล้ว! ผมจะติดต่อกลับเร็วๆ นี้ครับ
-          </p>
+      <!-- ขวา: ฟอร์มติดต่อ -->
+        <div class="reveal reveal-d2">
+
+          <form id="contactForm" class="contact-form">
+
+            <div class="form-group">
+              <label>ชื่อผู้ติดต่อ</label>
+              <input
+                type="text"
+                name="name"
+                class="form-input"
+                placeholder="เช่น คุณสมชาย ใจดี"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>บริษัท</label>
+              <input
+                type="text"
+                name="company"
+                class="form-input"
+                placeholder="เช่น บริษัท ABC จำกัด"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>อีเมลของคุณ</label>
+              <input
+                type="email"
+                name="email"
+                class="form-input"
+                placeholder="company@example.com"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>เบอร์โทรศัพท์</label>
+              <input
+                type="tel"
+                name="phone"
+                class="form-input"
+                placeholder="เช่น 080-123-4567"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label>ข้อความ</label>
+              <textarea name="message"class="form-input"
+                placeholder="สวัสดีครับ ผมสนใจ..."
+                required></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="btn-primary"
+              style="align-self:flex-start;">
+              ส่งข้อความ ✉️
+            </button>
+
+            <p id="form-msg"
+              style="display:none;font-size:13px;color:#4ade80;margin-top:10px;">
+            </p>
+
+          </form>
+
         </div>
       </div>
 
@@ -708,17 +751,78 @@ function toggleMenu() {
 }
 
 // ===================================================
-// 6. FORM SUBMIT — Mock form (ใช้ Formspree จริงๆ ได้)
+// 6. FORM SUBMIT — Google Sheet API
 // ===================================================
-function handleFormSubmit(btn) {
-  btn.textContent = 'กำลังส่ง...';
-  btn.style.opacity = '0.6';
-  btn.style.pointerEvents = 'none';
-  setTimeout(() => {
-    btn.textContent = '✅ ส่งแล้ว!';
-    document.getElementById('form-msg').style.display = 'block';
-  }, 1200);
-}
+
+const SCRIPT_URL =
+'https://script.google.com/macros/s/AKfycbwQ7JedsAhjIFliHgLOBaRWAXGiJvKi6KWrRNpTJBSTmdn_lF1Hs7f9NZxbl7nC/exec';
+
+const contactForm = document.getElementById('contactForm');
+const formMsg = document.getElementById('form-msg');
+
+contactForm.addEventListener('submit', async (e) => {
+
+  e.preventDefault();
+
+  const submitBtn =
+    contactForm.querySelector('button[type="submit"]');
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'กำลังส่ง...';
+
+  const data = {
+    name: contactForm.name.value.trim(),
+    company: contactForm.company.value.trim(),
+    email: contactForm.email.value.trim(),
+    phone: contactForm.phone.value.trim(),
+    message: contactForm.message.value.trim()
+  };
+
+  try {
+
+    const response = await fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.text();
+    console.log(result);
+
+    if (response.ok) {
+
+      formMsg.style.display = 'block';
+      formMsg.style.color = '#4ade80';
+      formMsg.textContent =
+        '✅ ส่งข้อความเรียบร้อยแล้ว';
+
+      contactForm.reset();
+
+    } else {
+
+      formMsg.style.display = 'block';
+      formMsg.style.color = '#ef4444';
+      formMsg.textContent =
+      '❌ เกิดข้อผิดพลาดในการส่งข้อมูล';
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    formMsg.style.display = 'block';
+    formMsg.style.color = '#ef4444';
+    formMsg.textContent =
+      '❌ ไม่สามารถเชื่อมต่อระบบได้';
+
+  }
+
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'ส่งข้อความ ✉️';
+
+});
 
 // ===================================================
 // 7. ACTIVE NAV LINK — highlight เมื่อ scroll ถึง section
