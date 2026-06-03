@@ -768,12 +768,12 @@ section {
   justify-content: center;
 }
 
-/* สีพื้นหลังแต่ละ project แตกต่างกัน */
+/* สีพื้นหลังแต่ละ project */
 .thumb-blue { background: linear-gradient(135deg, #0f2d52, #1d6fa4); }
-.thumb-teal { background: linear-gradient(135deg, #0a2b2b, #0d7377); }
+.thumb-teal { background: linear-gradient(135deg, #2b2b0a, #0d7377); }
 .thumb-purple { background: linear-gradient(135deg, #1a0a3c, #5a2d91); }
-.thumb-green { background: linear-gradient(135deg, #0a2b12, #1a8a3a); }
-.thumb-green { background: linear-gradient(135deg, #0a2b12, #1a8a3a); }
+.thumb-green { background: linear-gradient(135deg, #0ac5a6, #06312a); }
+.thumb-company { background: linear-gradient(135deg,#120414,#920ab4);}
 
 .project-thumb-icon {
   font-size: 52px;
