@@ -751,7 +751,7 @@ function toggleMenu() {
 }
 
 // ===================================================
-// 6. FORM SUBMIT — Google Sheet API
+// 6. FORM SUBMIT — Google Sheet API (แก้ CORS ด้วย no-cors)
 // ===================================================
 
 const SCRIPT_URL =
@@ -761,45 +761,43 @@ const contactForm = document.getElementById('contactForm');
 const formMsg = document.getElementById('form-msg');
 
 contactForm.addEventListener('submit', async (e) => {
-
   e.preventDefault();
 
-  const submitBtn =
-    contactForm.querySelector('button[type="submit"]');
-
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
   submitBtn.disabled = true;
   submitBtn.textContent = 'กำลังส่ง...';
 
   try {
-
+    // ใช้ URLSearchParams แทน FormData เพื่อให้ Apps Script รับได้
     const formData = new FormData(contactForm);
+    const params = new URLSearchParams();
+    for (const [key, value] of formData.entries()) {
+      params.append(key, value);
+    }
 
+    // ใช้ mode: 'no-cors' เพื่อหลีกเลี่ยง CORS error
     await fetch(SCRIPT_URL, {
       method: 'POST',
-      body: formData
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: params.toString()
     });
 
+    // no-cors จะไม่รู้ว่าสำเร็จหรือไม่ แต่ถ้าไม่ throw = ส่งได้
     formMsg.style.display = 'block';
     formMsg.style.color = '#4ade80';
-    formMsg.textContent =
-      '✅ ส่งข้อความเรียบร้อยแล้ว';
-
+    formMsg.textContent = '✅ ส่งข้อความเรียบร้อยแล้ว';
     contactForm.reset();
 
   } catch (error) {
-
     console.error(error);
-
     formMsg.style.display = 'block';
     formMsg.style.color = '#ef4444';
-    formMsg.textContent =
-      '❌ ไม่สามารถเชื่อมต่อระบบได้';
-
+    formMsg.textContent = '❌ ไม่สามารถเชื่อมต่อระบบได้';
   }
 
   submitBtn.disabled = false;
   submitBtn.textContent = 'ส่งข้อความ ✉️';
-
 });
 
 // ===================================================
