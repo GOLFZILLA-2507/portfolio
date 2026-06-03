@@ -770,43 +770,21 @@ contactForm.addEventListener('submit', async (e) => {
   submitBtn.disabled = true;
   submitBtn.textContent = 'กำลังส่ง...';
 
-  const data = {
-    name: contactForm.name.value.trim(),
-    company: contactForm.company.value.trim(),
-    email: contactForm.email.value.trim(),
-    phone: contactForm.phone.value.trim(),
-    message: contactForm.message.value.trim()
-  };
-
   try {
 
-    const response = await fetch(SCRIPT_URL, {
+    const formData = new FormData(contactForm);
+
+    await fetch(SCRIPT_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+      body: formData
     });
 
-    const result = await response.text();
-    console.log(result);
+    formMsg.style.display = 'block';
+    formMsg.style.color = '#4ade80';
+    formMsg.textContent =
+      '✅ ส่งข้อความเรียบร้อยแล้ว';
 
-    if (response.ok) {
-
-      formMsg.style.display = 'block';
-      formMsg.style.color = '#4ade80';
-      formMsg.textContent =
-        '✅ ส่งข้อความเรียบร้อยแล้ว';
-
-      contactForm.reset();
-
-    } else {
-
-      formMsg.style.display = 'block';
-      formMsg.style.color = '#ef4444';
-      formMsg.textContent =
-      '❌ เกิดข้อผิดพลาดในการส่งข้อมูล';
-    }
+    contactForm.reset();
 
   } catch (error) {
 
