@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>กฤษฎา มะโนน้อม — IT Support | Infrastructure & Development</title>
+
+<!-- ฟอนต์ภาษาไทย + English ที่ดูโปร -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- ===================================================
+     NAVIGATION — แถบเมนูด้านบนที่ fixed
+================================================== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">กอล์ฟ<span>.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="#about">เกี่ยวกับฉัน</a></li>
+      <li><a href="#experience">ประสบการณ์</a></li>
+      <li><a href="#skills">ทักษะ</a></li>
+      <li><a href="#projects">ผลงาน</a></li>
+      <li><a href="#contact">ติดต่อ</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ===================================================
+     HERO — หน้าแรกที่เห็นตอนเปิดเว็บ
+================================================== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+
+  <div class="container">
+    <div class="hero-content">
+
+      <!-- Badge "Open to Work" -->
+      <div class="hero-badge">
+        <span class="dot-live"></span>
+        OPEN TO WORK
+      </div>
+
+      <!-- ชื่อหลัก -->
+      <h1 class="hero-name">
+        กฤษฎา<br><span>มะโนน้อม</span>
+      </h1>
+
+      <!-- Typing text — JS จะ animate สลับ role -->
+      <div class="hero-role">
+        <span id="typing-text"></span><span class="typing-cursor"></span>
+      </div>
+
+      <!-- คำอธิบายสั้นๆ -->
+      <p class="hero-desc">
+        IT Professional ที่มีประสบการณ์มากกว่า 3 ปี ดูแลระบบ IT สำหรับ 150+ คน
+        พร้อมพัฒนา Web Application และ Backend API ภายในองค์กร
+      </p>
+
+      <!-- Stat ตัวเลขเด่น -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num" data-count="3">0</div>
+          <div class="stat-label">ปีประสบการณ์</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-count="150">0</div>
+          <div class="stat-label">Users Supported</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-count="4">0</div>
+          <div class="stat-label">Projects</div>
+        </div>
+      </div>
+
+      <!-- ปุ่ม CTA -->
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">💬 ติดต่อฉัน</a>
+        <a href="#projects" class="btn-outline">🚀 ดูผลงาน</a>
+        <a href="https://github.com/GOLFZILLA-2507" target="_blank" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ลูกศรชี้ลง scroll hint -->
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+
+<!-- ===================================================
+     ABOUT — เกี่ยวกับฉัน
+================================================== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- รูปภาพ/Avatar ด้านซ้าย -->
+      <div class="about-img-wrap reveal">
+        <div class="about-img-bg">
+          <!-- ใส่รูปตัวเองได้เลย: <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+          <div class="about-initials">KM</div>
+        </div>
+        <!-- Badge ลอย -->
+        <div class="about-badge-float">
+          <div class="num">3+</div>
+          <div class="lbl">ปีประสบการณ์</div>
+        </div>
+      </div>
+
+      <!-- ข้อความด้านขวา -->
+      <div class="about-text">
+        <span class="section-tag reveal">เกี่ยวกับฉัน</span>
+        <h2 class="section-title reveal reveal-d1">
+          IT Professional ที่รัก<span>การแก้ปัญหา</span>
+        </h2>
+        <div class="section-line reveal reveal-d2"></div>
+
+        <p class="reveal reveal-d2">
+          สวัสดีครับ ผมชื่อ <strong>กฤษฎา มะโนน้อม (กอล์ฟ)</strong> เกิดวันที่ 25 กรกฎาคม 2540 อายุ 28 ปี
+          ปัจจุบันทำงานด้าน IT Support ที่ดูแลและสนับสนุนระบบ IT ภายในองค์กร
+          ครอบคลุมงาน User Support, System Administration และ Network Infrastructure
+        </p>
+
+        <p class="reveal reveal-d3">
+          นอกจากสาย IT Support แล้ว ผมยังต่อยอดประสบการณ์สู่การพัฒนาระบบ
+          โดยมีประสบการณ์ออกแบบฐานข้อมูล พัฒนา <strong>Web Application</strong> และ
+          <strong>Backend API</strong> รวมถึงการเชื่อมต่อระบบผ่าน API
+          ด้วย Node.js, PHP, JavaScript และ Microsoft SQL Server
+        </p>
+
+        <!-- Info chips -->
+        <div class="info-chips reveal reveal-d4">
+          <div class="chip"><span class="chip-icon">📅</span>25 ก.ค. 2540</div>
+          <div class="chip"><span class="chip-icon">📍</span>เพชรบูรณ์ / ไทย</div>
+          <div class="chip"><span class="chip-icon">🎓</span>ปริญญาตรี IT</div>
+          <div class="chip"><span class="chip-icon">💼</span>Full-time IT</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================================================
+     EXPERIENCE — ประสบการณ์การทำงาน
+================================================== -->
+<section id="experience">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag reveal">ประสบการณ์</span>
+      <h2 class="section-title reveal reveal-d1">เส้นทางการทำงาน</h2>
+      <div class="section-line reveal reveal-d2" style="margin: 0 auto 48px;"></div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- Job 1 — ปัจจุบัน -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot">💻</div>
+        <div class="timeline-card">
+          <div class="tl-header">
+            <div class="tl-title">IT Support Specialist</div>
+            <div class="tl-date">2565 – ปัจจุบัน</div>
+          </div>
+          <div class="tl-company">🏢 องค์กรปัจจุบัน — IT & System Development</div>
+          <ul class="tl-list">
+            <li>ดูแลและสนับสนุนผู้ใช้งานมากกว่า 150+ คน ทั้ง On-site และ Remote</li>
+            <li>วิเคราะห์และแก้ไขปัญหาระบบ Windows, Hardware, Software และ Printer</li>
+            <li>ดูแลระบบเครือข่าย — LAN, Router, Access Point, IP Phone, CCTV (Hikvision/UNV)</li>
+            <li>ออกแบบฐานข้อมูลและพัฒนา Web Application ด้วย PHP, Node.js, SQL Server</li>
+            <li>ติดตั้ง อัปเกรด ซ่อมบำรุง Desktop/Notebook และดูแลอีเมล Outlook</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="timeline-item reveal reveal-d1">
+        <div class="timeline-dot">📦</div>
+        <div class="timeline-card">
+          <div class="tl-header">
+            <div class="tl-title">พนักงานฝ่ายปฏิบัติการ</div>
+            <div class="tl-date">2564 – 2565</div>
+          </div>
+          <div class="tl-company">⚡ Flash Express</div>
+          <ul class="tl-list">
+            <li>รับพัสดุ คีย์ข้อมูลที่อยู่จัดส่ง จัดทำสต็อกและสั่งซื้อของ</li>
+            <li>ดูแลบัญชีเงินสดและเงินจากการส่งพัสดุ</li>
+            <li>ติดตามงานและส่งรีพอร์ตประจำวัน</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Job 3 — เสริม -->
+      <div class="timeline-item reveal reveal-d2">
+        <div class="timeline-dot">🛒</div>
+        <div class="timeline-card">
+          <div class="tl-header">
+            <div class="tl-title">ขายหมาล่า (รายได้เสริม)</div>
+            <div class="tl-date">2562 – 2562</div>
+          </div>
+          <div class="tl-company">🍜 ร้านตัวเอง — ระหว่างเรียน</div>
+          <ul class="tl-list">
+            <li>บริหารจัดการร้าน คิดเงิน จัดซื้อวัตถุดิบ และดูแลลูกค้าด้วยตัวเอง</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================================================
+     SKILLS — ทักษะ
+================================================== -->
+<section id="skills">
+  <div class="container">
+    <span class="section-tag reveal">ทักษะ</span>
+    <h2 class="section-title reveal reveal-d1">สิ่งที่ผมทำได้</h2>
+    <div class="section-line reveal reveal-d2"></div>
+
+    <div class="skills-grid">
+
+      <!-- Frontend -->
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🎨</div>
+        <h3>Frontend Development</h3>
+        <div class="skill-tags">
+          <span class="s-tag">HTML5</span>
+          <span class="s-tag">CSS3</span>
+          <span class="s-tag">JavaScript</span>
+          <span class="s-tag">Bootstrap</span>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div class="skill-card reveal reveal-d1">
+        <div class="skill-card-icon">⚙️</div>
+        <h3>Backend Development</h3>
+        <div class="skill-tags">
+          <span class="s-tag">PHP</span>
+          <span class="s-tag">Node.js</span>
+          <span class="s-tag">Express.js</span>
+          <span class="s-tag">REST API</span>
+          <span class="s-tag">LINE API</span>
+        </div>
+      </div>
+
+      <!-- Database -->
+      <div class="skill-card reveal reveal-d2">
+        <div class="skill-card-icon">🗄️</div>
+        <h3>Database</h3>
+        <div class="skill-tags">
+          <span class="s-tag">SQL Server</span>
+          <span class="s-tag">MySQL</span>
+          <span class="s-tag">SSMS</span>
+          <span class="s-tag">XAMPP</span>
+        </div>
+      </div>
+
+      <!-- Infrastructure -->
+      <div class="skill-card reveal reveal-d3">
+        <div class="skill-card-icon">🌐</div>
+        <h3>Network & Infrastructure</h3>
+        <div class="skill-tags">
+          <span class="s-tag">Network Setup</span>
+          <span class="s-tag">Router/AP</span>
+          <span class="s-tag">CCTV</span>
+          <span class="s-tag">IP Phone</span>
+          <span class="s-tag">Windows Admin</span>
+          <span class="s-tag">LAN/WAN</span>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="skill-card reveal reveal-d1">
+        <div class="skill-card-icon">🛠️</div>
+        <h3>Tools & Version Control</h3>
+        <div class="skill-tags">
+          <span class="s-tag">GitHub</span>
+          <span class="s-tag">VS Code</span>
+          <span class="s-tag">MS Office</span>
+          <span class="s-tag">Google Workspace</span>
+        </div>
+      </div>
+
+      <!-- AI Tools -->
+      <div class="skill-card reveal reveal-d2">
+        <div class="skill-card-icon">🤖</div>
+        <h3>AI Productivity</h3>
+        <div class="skill-tags">
+          <span class="s-tag">GitHub Copilot</span>
+          <span class="s-tag">ChatGPT</span>
+          <span class="s-tag">Claude</span>
+          <span class="s-tag">Gemini</span>
+          <span class="s-tag">Codex</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Soft Skills Progress Bars -->
+    <div style="margin-top: 56px;">
+      <h3 style="font-family:'Kanit',sans-serif; font-size:20px; color:var(--navy); margin-bottom:28px;" class="reveal">
+        Soft Skills
+      </h3>
+      <div style="max-width: 600px;">
+        <div class="skill-bar-wrap reveal">
+          <div class="skill-bar-label">
+            <span>การวิเคราะห์และแก้ปัญหา</span>
+            <span>90%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div>
+        </div>
+        <div class="skill-bar-wrap reveal reveal-d1">
+          <div class="skill-bar-label">
+            <span>การสื่อสารและให้บริการ</span>
+            <span>88%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-bar-wrap reveal reveal-d2">
+          <div class="skill-bar-label">
+            <span>การทำงานเป็นทีม</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-bar-wrap reveal reveal-d3">
+          <div class="skill-bar-label">
+            <span>เรียนรู้เทคโนโลยีใหม่</span>
+            <span>92%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div>
+        </div>
+        <div class="skill-bar-wrap reveal reveal-d4">
+          <div class="skill-bar-label">
+            <span>บริหารเวลาและจัดลำดับงาน</span>
+            <span>82%</span>
+          </div>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="82"></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================================================
+     PROJECTS — ผลงาน
+================================================== -->
+<section id="projects">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag reveal">ผลงาน</span>
+      <h2 class="section-title reveal reveal-d1">โปรเจกต์ที่<span>ภาคภูมิใจ</span></h2>
+      <div class="section-line reveal reveal-d2" style="margin: 0 auto 48px;"></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card reveal">
+        <div class="project-thumb thumb-blue">
+          <div class="project-thumb-label">IT Inventory<br>System</div>
+          <div class="project-thumb-icon">📦</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">ระบบจัดการคลังอุปกรณ์ IT</div>
+          <p class="project-desc">
+            ระบบบริหารจัดการอุปกรณ์ IT สำหรับธุรกิจรับเหมาก่อสร้าง
+            รองรับการโอนย้าย ส่งมอบ รับคืน แจ้งซ่อม คำนวณค่าเช่า
+            พร้อม Import/Export ข้อมูลและรองรับมือถือ
+          </p>
+          <div class="project-tags">
+            <span class="p-tag">PHP</span>
+            <span class="p-tag">SQL Server</span>
+            <span class="p-tag">JavaScript</span>
+            <span class="p-tag">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card reveal reveal-d1">
+        <div class="project-thumb thumb-teal">
+          <div class="project-thumb-label">Car Booking<br>System</div>
+          <div class="project-thumb-icon">🚗</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">ระบบจองรถภายในองค์กร</div>
+          <p class="project-desc">
+            ระบบจองรถผ่าน Calendar แยก Admin/User ตรวจสอบรถว่างอัตโนมัติ
+            ป้องกันการจองซ้ำ เชื่อมต่อฐานข้อมูลแบบ Real-time
+          </p>
+          <div class="project-tags">
+            <span class="p-tag">PHP</span>
+            <span class="p-tag">SQL Server</span>
+            <span class="p-tag">JavaScript</span>
+            <span class="p-tag">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card reveal reveal-d2">
+        <div class="project-thumb thumb-purple">
+          <div class="project-thumb-label">Network<br>Infrastructure</div>
+          <div class="project-thumb-icon">🌐</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">ปรับปรุงระบบ Network — Kirirhom Khaokho</div>
+          <p class="project-desc">
+            Config Access Point ใหม่ทั้งหมด จัดกลุ่ม IP Network
+            เดินสาย RJ45 และไฟเบอร์ แก้ปัญหากล้องวงจรปิด IP กระจาย
+          </p>
+          <div class="project-tags">
+            <span class="p-tag">Networking</span>
+            <span class="p-tag">CCTV</span>
+            <span class="p-tag">IP Config</span>
+            <span class="p-tag">Fiber</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card reveal reveal-d3">
+        <div class="project-thumb thumb-green">
+          <div class="project-thumb-label">Google Workspace<br>Training</div>
+          <div class="project-thumb-icon">📚</div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">อบรม Google Workspace & Company Profile</div>
+          <p class="project-desc">
+            จัดอบรมพนักงาน Google Workspace (Gmail, Drive, Meet)
+            จัดทำคู่มือการใช้งาน และออกแบบ Company Profile องค์กร
+          </p>
+          <div class="project-tags">
+            <span class="p-tag">Google Apps</span>
+            <span class="p-tag">Training</span>
+            <span class="p-tag">Documentation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GitHub Link -->
+    <div style="text-align:center; margin-top:40px;" class="reveal">
+      <a href="https://github.com/GOLFZILLA-2507" target="_blank" class="btn-primary" style="background:var(--navy); color:white; display:inline-flex;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        ดูผลงานทั้งหมดบน GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================================================
+     CONTACT — ติดต่อ
+================================================== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- ซ้าย: ข้อความและลิงก์ติดต่อ -->
+      <div>
+        <span class="section-tag reveal">ติดต่อ</span>
+        <h2 class="section-title reveal reveal-d1" style="color:white;">
+          พูดคุยกัน<span style="color:var(--accent);">ได้เลย</span>
+        </h2>
+        <div class="section-line reveal reveal-d2"></div>
+
+        <p class="contact-desc reveal reveal-d2">
+          พร้อมรับโอกาสใหม่ๆ ไม่ว่าจะเป็นงาน Full-time, Part-time
+          หรือ Project-based ติดต่อผมได้เลยครับ!
+        </p>
+
+        <div class="contact-links reveal reveal-d3">
+          <a href="mailto:Golfkidsada250740@gmail.com" class="contact-link-item">
+            <div class="contact-link-icon">📧</div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:2px;">EMAIL</div>
+              Golfkidsada250740@gmail.com
+            </div>
+          </a>
+          <a href="tel:0802801475" class="contact-link-item">
+            <div class="contact-link-icon">📱</div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:2px;">PHONE</div>
+              080-280-1475
+            </div>
+          </a>
+          <a href="#" class="contact-link-item">
+            <div class="contact-link-icon">💬</div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:2px;">LINE</div>
+              golfzillaaa
+            </div>
+          </a>
+          <a href="https://github.com/GOLFZILLA-2507" target="_blank" class="contact-link-item">
+            <div class="contact-link-icon">💻</div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:2px;">GITHUB</div>
+              github.com/GOLFZILLA-2507
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- ขวา: ฟอร์มติดต่อ (สำหรับ static site — เชื่อม Formspree หรือ EmailJS ได้) -->
+      <div class="reveal reveal-d2">
+        <div class="contact-form">
+          <div class="form-group">
+            <label>ชื่อของคุณ</label>
+            <input type="text" class="form-input" placeholder="เช่น สมชาย ใจดี">
+          </div>
+          <div class="form-group">
+            <label>อีเมล</label>
+            <input type="email" class="form-input" placeholder="example@email.com">
+          </div>
+          <div class="form-group">
+            <label>ข้อความ</label>
+            <textarea class="form-input" placeholder="สวัสดีครับ ผมสนใจ..."></textarea>
+          </div>
+          <!-- เชื่อมกับ Formspree: action="https://formspree.io/f/YOUR_ID" method="POST" -->
+          <button class="btn-primary" onclick="handleFormSubmit(this)" style="align-self:flex-start;">
+            ส่งข้อความ ✉️
+          </button>
+          <p id="form-msg" style="font-size:13px;color:rgba(255,255,255,0.5);display:none;">
+            ✅ ส่งข้อความแล้ว! ผมจะติดต่อกลับเร็วๆ นี้ครับ
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================================================
+     FOOTER
+================================================== -->
+<footer>
+  <div class="container">
+    <p>
+      ออกแบบและพัฒนาโดย <a href="#">กฤษฎา มะโนน้อม</a>
+      &nbsp;|&nbsp;
+      <a href="https://github.com/GOLFZILLA-2507" target="_blank">GitHub</a>
+      &nbsp;|&nbsp;
+      © 2025 All rights reserved.
+    </p>
+  </div>
+</footer>
+
+
+<!-- ===================================================
+     JAVASCRIPT — Logic ทั้งหมด
+================================================== -->
+<script>
+// ===================================================
+// 1. NAVBAR — เปลี่ยนสีเมื่อ scroll ลง
+// ===================================================
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// ===================================================
+// 2. TYPING ANIMATION — สลับ text ใน hero
+// ===================================================
+const roles = [
+  'IT Support Specialist',
+  'Infrastructure Engineer',
+  'Web Developer (PHP/Node.js)',
+  'Network Administrator',
+  'System Administrator',
+];
+let roleIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const typingEl = document.getElementById('typing-text');
+
+function typeEffect() {
+  const currentRole = roles[roleIndex];
+
+  if (!isDeleting) {
+    // พิมพ์ทีละตัว
+    typingEl.textContent = currentRole.slice(0, charIndex + 1);
+    charIndex++;
+    if (charIndex === currentRole.length) {
+      // หยุดก่อนลบ
+      isDeleting = true;
+      setTimeout(typeEffect, 1600);
+      return;
+    }
+  } else {
+    // ลบทีละตัว
+    typingEl.textContent = currentRole.slice(0, charIndex - 1);
+    charIndex--;
+    if (charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }
+  }
+  setTimeout(typeEffect, isDeleting ? 50 : 80);
+}
+typeEffect();
+
+// ===================================================
+// 3. SCROLL REVEAL — Fade in เมื่อ scroll ถึง element
+// ===================================================
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+
+      // ถ้าเป็น progress bar ให้ animate ด้วย
+      const bars = entry.target.querySelectorAll('.skill-bar-fill');
+      bars.forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+    }
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+// ลงทะเบียนทุก element ที่มี class reveal
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// ===================================================
+// 4. COUNTER ANIMATION — ตัวเลขใน hero วิ่งขึ้น
+// ===================================================
+function animateCounter(el, target, duration = 1500) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) {
+      el.textContent = target + (target === 150 ? '+' : '+');
+      clearInterval(timer);
+    } else {
+      el.textContent = Math.floor(start) + (target === 150 ? '+' : '+');
+    }
+  }, 16);
+}
+
+// Observer สำหรับ counter ใน hero
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const target = parseInt(entry.target.dataset.count);
+      animateCounter(entry.target, target);
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+// ===================================================
+// 5. HAMBURGER MENU — สำหรับ mobile
+// ===================================================
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '66px';
+  links.style.left = '0'; links.style.right = '0';
+  links.style.background = 'rgba(11,31,56,0.97)';
+  links.style.padding = '16px 32px';
+  links.style.gap = '4px';
+}
+
+// ===================================================
+// 6. FORM SUBMIT — Mock form (ใช้ Formspree จริงๆ ได้)
+// ===================================================
+function handleFormSubmit(btn) {
+  btn.textContent = 'กำลังส่ง...';
+  btn.style.opacity = '0.6';
+  btn.style.pointerEvents = 'none';
+  setTimeout(() => {
+    btn.textContent = '✅ ส่งแล้ว!';
+    document.getElementById('form-msg').style.display = 'block';
+  }, 1200);
+}
+
+// ===================================================
+// 7. ACTIVE NAV LINK — highlight เมื่อ scroll ถึง section
+// ===================================================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--accent)'
+      : '';
+  });
+});
+</script>
+
+</body>
+</html>
