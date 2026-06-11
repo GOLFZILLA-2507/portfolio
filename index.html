@@ -11,9 +11,71 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* ===== LANGUAGE TOGGLE PILL ===== */
+.lang-toggle {
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.lang-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 80px;
+  height: 32px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 999px;
+  padding: 3px;
+  transition: border-color 0.25s;
+}
+
+.lang-toggle:hover .lang-track {
+  border-color: rgba(255,255,255,0.35);
+}
+
+.lang-thumb {
+  position: absolute;
+  left: 3px;
+  width: 36px;
+  height: 26px;
+  background: var(--accent, #f5a623);
+  border-radius: 999px;
+  transition: transform 0.28s cubic-bezier(.4,0,.2,1);
+  z-index: 0;
+}
+
+.lang-toggle.is-th .lang-thumb {
+  transform: translateX(38px);
+}
+
+.lang-option {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.45);
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.lang-toggle:not(.is-th) .lang-opt-en,
+.lang-toggle.is-th .lang-opt-th {
+  color: #0b1f38;
+  font-weight: 700;
+}
+</style>
 
 </head>
 <body>
+
+
 
 <!-- ===================================================
      NAVIGATION — แถบเมนูด้านบนที่ fixed
@@ -21,13 +83,22 @@
 <nav id="navbar">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo"><span>GOLF</span>. dev</a>
+    <!-- Language Toggle Pill -->
+    <div class="lang-toggle" id="langToggle" onclick="toggleLanguage()">
+      <div class="lang-track">
+        <div class="lang-thumb" id="langThumb"></div>
+        <span class="lang-option lang-opt-en" id="optEn">EN</span>
+        <span class="lang-option lang-opt-th" id="optTh">TH</span>
+      </div>
+    </div>
     <ul class="nav-links">
-      <li><a href="#about">เกี่ยวกับฉัน</a></li>
-      <li><a href="#experience">ประสบการณ์</a></li>
-      <li><a href="#skills">ทักษะ</a></li>
-      <li><a href="#projects">ผลงาน</a></li>
-      <li><a href="#contact">ติดต่อ</a></li>
+      <li><a href="#about"     data-th="เกี่ยวกับฉัน" data-en="About">เกี่ยวกับฉัน</a></li>
+      <li><a href="#experience" data-th="ประสบการณ์"   data-en="Experience">ประสบการณ์</a></li>
+      <li><a href="#skills"    data-th="ทักษะ"         data-en="Skills">ทักษะ</a></li>
+      <li><a href="#projects"  data-th="ผลงาน"         data-en="Projects">ผลงาน</a></li>
+      <li><a href="#contact"   data-th="ติดต่อ"        data-en="Contact">ติดต่อ</a></li>
     </ul>
+
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
@@ -55,7 +126,8 @@
 
       <!-- ชื่อหลัก -->
       <h1 class="hero-name">
-        กฤษฎา<br><span>มะโนน้อม</span>
+        <span data-th="กฤษฎา" data-en="Kidsada">กฤษฎา</span><br>
+        <span data-th="มะโนน้อม" data-en="Manonom">มะโนน้อม</span>
       </h1>
 
       <!-- Typing text — JS จะ animate สลับ role -->
@@ -64,7 +136,9 @@
       </div>
 
       <!-- คำอธิบายสั้นๆ -->
-      <p class="hero-desc">
+      <p class="hero-desc"
+         data-th="IT Professional ที่มีประสบการณ์มากกว่า 3 ปี ดูแลระบบ IT สำหรับ 150+ คน พร้อมพัฒนา Web Application และ Backend API ภายในองค์กร"
+         data-en="IT Professional with 3+ years of experience managing IT systems for 150+ users, developing Web Applications and Backend APIs within the organization.">
         IT Professional ที่มีประสบการณ์มากกว่า 3 ปี ดูแลระบบ IT สำหรับ 150+ คน
         พร้อมพัฒนา Web Application และ Backend API ภายในองค์กร
       </p>
@@ -73,27 +147,29 @@
       <div class="hero-stats">
         <div class="stat-item">
           <div class="stat-num" data-count="3">0</div>
-          <div class="stat-label">ปีประสบการณ์</div>
+          <div class="stat-label" data-th="ปีประสบการณ์" data-en="Yrs Experience">ปีประสบการณ์</div>
         </div>
         <div class="stat-item">
           <div class="stat-num" data-count="150">0</div>
-          <div class="stat-label">Users Supported</div>
+          <div class="stat-label" data-th="Users Supported" data-en="Users Supported">Users Supported</div>
         </div>
         <div class="stat-item">
           <div class="stat-num" data-count="5">0</div>
-          <div class="stat-label">Projects</div>
+          <div class="stat-label" data-th="Projects" data-en="Projects">Projects</div>
         </div>
       </div>
 
       <!-- ปุ่ม CTA -->
       <div class="hero-btns">
-        <a href="#contact" class="btn-primary">💬 ติดต่อฉัน</a>
-        <a href="#projects" class="btn-outline">🚀 ดูผลงาน</a>
+        <a href="#contact" class="btn-primary"
+           data-th="💬 ติดต่อฉัน" data-en="💬 Contact Me">💬 ติดต่อฉัน</a>
+        <a href="#projects" class="btn-outline"
+           data-th="🚀 ดูผลงาน" data-en="🚀 View Projects">🚀 ดูผลงาน</a>
         <a href="https://github.com/GOLFZILLA-2507" target="_blank" class="btn-outline">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           GitHub
         </a>
-        <a href="files/CV-Resume_กฤษฎา มะโนน้อม.pdf"  target="_blank" class="btn-outline">📄 Resume</a>
+        <a href="files/CV-Resume_กฤษฎา มะโนน้อม.pdf" target="_blank" class="btn-outline">📄 Resume</a>
       </div>
     </div>
   </div>
@@ -116,8 +192,7 @@
       <!-- รูปภาพ/Avatar ด้านซ้าย -->
       <div class="about-img-wrap reveal">
         <div class="about-img-bg">
-          <img src="img/รูปสมัครงาน (update).jpg" style="width:100%;height:100%;object-fit:cover"> 
-          <!-- <div class="about-initials">KM</div> -->
+          <img src="img/รูปสมัครงาน (update).jpg" style="width:100%;height:100%;object-fit:cover">
         </div>
         <!-- Badge ลอย -->
         <div class="about-badge-float">
@@ -128,19 +203,25 @@
 
       <!-- ข้อความด้านขวา -->
       <div class="about-text">
-        <span class="section-tag reveal">เกี่ยวกับฉัน</span>
+        <span class="section-tag reveal"
+              data-th="เกี่ยวกับฉัน" data-en="About Me">เกี่ยวกับฉัน</span>
         <h2 class="section-title reveal reveal-d1">
-          IT Professional ที่รัก<span>ความท้าทายในการทำงาน</span>
+          <span data-th="IT Professional ที่รัก" data-en="IT Professional Who">IT Professional ที่รัก</span>
+          <span data-th="ความท้าทายในการทำงาน" data-en="Loves Every Challenge">ความท้าทายในการทำงาน</span>
         </h2>
         <div class="section-line reveal reveal-d2"></div>
 
-        <p class="reveal reveal-d2">
+        <p class="reveal reveal-d2"
+           data-th="<strong>กฤษฎา มะโนน้อม (กอล์ฟ)</strong> เกิดวันที่ 25 กรกฎาคม 2540 อายุ 28 ปี ปัจจุบันทำงานด้าน IT Support ที่ดูแลและสนับสนุนระบบ IT ภายในองค์กร ครอบคลุมงาน User Support, System Administration และ Network Infrastructure"
+           data-en="<strong>Kidsada Manonom (Golf)</strong>, born July 25, 1997, age 28. Currently working as an IT Support professional, managing and supporting the organization's IT systems including User Support, System Administration, and Network Infrastructure.">
           <strong>กฤษฎา มะโนน้อม (กอล์ฟ)</strong> เกิดวันที่ 25 กรกฎาคม 2540 อายุ 28 ปี
           ปัจจุบันทำงานด้าน IT Support ที่ดูแลและสนับสนุนระบบ IT ภายในองค์กร
           ครอบคลุมงาน User Support, System Administration และ Network Infrastructure
         </p>
 
-        <p class="reveal reveal-d3">
+        <p class="reveal reveal-d3"
+           data-th="นอกจากสาย IT Support แล้ว ผมยังต่อยอดประสบการณ์สู่การพัฒนาระบบ โดยมีประสบการณ์ออกแบบฐานข้อมูล พัฒนา <strong>Web Application</strong> และ <strong>Backend API</strong> รวมถึงการเชื่อมต่อระบบผ่าน API ด้วย Node.js, PHP, JavaScript และ Microsoft SQL Server"
+           data-en="Beyond IT Support, I have extended my expertise into system development — including database design, <strong>Web Application</strong> and <strong>Backend API</strong> development, and system integration via APIs using Node.js, PHP, JavaScript, and Microsoft SQL Server.">
           นอกจากสาย IT Support แล้ว ผมยังต่อยอดประสบการณ์สู่การพัฒนาระบบ
           โดยมีประสบการณ์ออกแบบฐานข้อมูล พัฒนา <strong>Web Application</strong> และ
           <strong>Backend API</strong> รวมถึงการเชื่อมต่อระบบผ่าน API
@@ -149,10 +230,10 @@
 
         <!-- Info chips -->
         <div class="info-chips reveal reveal-d4">
-          <div class="chip"><span class="chip-icon">📅</span>25 ก.ค. 2540</div>
-          <div class="chip"><span class="chip-icon">📍</span>เพชรบูรณ์ / ไทย</div>
-          <div class="chip"><span class="chip-icon">🎓</span>ปริญญาตรี </div>
-          <div class="chip"><span class="chip-icon">💼</span>Full-time </div>
+          <div class="chip"><span class="chip-icon">📅</span><span data-th="25 ก.ค. 2540" data-en="Jul 25, 1997">25 ก.ค. 2540</span></div>
+          <div class="chip"><span class="chip-icon">📍</span><span data-th="เพชรบูรณ์ / ไทย" data-en="Phetchabun / Thailand">เพชรบูรณ์ / ไทย</span></div>
+          <div class="chip"><span class="chip-icon">🎓</span><span data-th="ปริญญาตรี" data-en="Bachelor's Degree">ปริญญาตรี</span></div>
+          <div class="chip"><span class="chip-icon">💼</span><span data-th="Full-time" data-en="Full-time">Full-time</span></div>
         </div>
       </div>
     </div>
@@ -166,8 +247,9 @@
 <section id="experience">
   <div class="container">
     <div class="text-center">
-      <span class="section-tag reveal">ประสบการณ์</span>
-      <h2 class="section-title reveal reveal-d1">เส้นทางการทำงาน</h2>
+      <span class="section-tag reveal" data-th="ประสบการณ์" data-en="Experience">ประสบการณ์</span>
+      <h2 class="section-title reveal reveal-d1"
+          data-th="เส้นทางการทำงาน" data-en="Career Timeline">เส้นทางการทำงาน</h2>
       <div class="section-line reveal reveal-d2" style="margin: 0 auto 48px;"></div>
     </div>
 
@@ -178,16 +260,35 @@
         <div class="timeline-dot">💻</div>
         <div class="timeline-card">
           <div class="tl-header">
-            <div class="tl-title">IT Support Specialist</div>
-            <div class="tl-date">2565 – ปัจจุบัน</div>
+            <div class="tl-title" data-th="IT Support" data-en="IT Support">IT Support</div>
+            <div class="tl-date" data-th="2565 – ปัจจุบัน" data-en="2022 – Present">2565 – ปัจจุบัน</div>
           </div>
-          <div class="tl-company">🏢 องค์กรปัจจุบัน — IT & System Development</div>
+          <div class="tl-company"
+               data-th="🏢 องค์กรปัจจุบัน — IT & System Development"
+               data-en="🏢 Current Organization — IT & System Development">
+            🏢 องค์กรปัจจุบัน — IT & System Development
+          </div>
           <ul class="tl-list">
-            <li>ดูแลและสนับสนุนผู้ใช้งานมากกว่า 150+ คน ทั้ง On-site และ Remote</li>
-            <li>วิเคราะห์และแก้ไขปัญหาระบบ Windows, Hardware, Software และ Printer</li>
-            <li>ดูแลระบบเครือข่าย — LAN, Router, Access Point, IP Phone, CCTV (Hikvision/UNV)</li>
-            <li>ออกแบบฐานข้อมูลและพัฒนา Web Application ด้วย PHP, Node.js, SQL Server</li>
-            <li>ติดตั้ง อัปเกรด ซ่อมบำรุง Desktop/Notebook และดูแลอีเมล Outlook</li>
+            <li data-th="ดูแลและสนับสนุนผู้ใช้งานมากกว่า 150+ คน ทั้ง On-site และ Remote"
+                data-en="Supported 150+ users both on-site and remotely.">
+              ดูแลและสนับสนุนผู้ใช้งานมากกว่า 150+ คน ทั้ง On-site และ Remote
+            </li>
+            <li data-th="วิเคราะห์และแก้ไขปัญหาระบบ Windows, Hardware, Software และ Printer"
+                data-en="Diagnosed and resolved Windows, hardware, software, and printer issues.">
+              วิเคราะห์และแก้ไขปัญหาระบบ Windows, Hardware, Software และ Printer
+            </li>
+            <li data-th="ดูแลระบบเครือข่าย — LAN, Router, Access Point, IP Phone, CCTV (Hikvision/UNV)"
+                data-en="Managed network infrastructure — LAN, Router, Access Point, IP Phone, CCTV (Hikvision/UNV).">
+              ดูแลระบบเครือข่าย — LAN, Router, Access Point, IP Phone, CCTV (Hikvision/UNV)
+            </li>
+            <li data-th="ออกแบบฐานข้อมูลและพัฒนา Web Application ด้วย PHP, Node.js, SQL Server"
+                data-en="Designed databases and developed Web Applications using PHP, Node.js, and SQL Server.">
+              ออกแบบฐานข้อมูลและพัฒนา Web Application ด้วย PHP, Node.js, SQL Server
+            </li>
+            <li data-th="ติดตั้ง อัปเกรด ซ่อมบำรุง Desktop/Notebook และดูแลอีเมล Outlook"
+                data-en="Installed, upgraded, and maintained desktops/notebooks and managed Outlook email.">
+              ติดตั้ง อัปเกรด ซ่อมบำรุง Desktop/Notebook และดูแลอีเมล Outlook
+            </li>
           </ul>
         </div>
       </div>
@@ -197,14 +298,25 @@
         <div class="timeline-dot">📦</div>
         <div class="timeline-card">
           <div class="tl-header">
-            <div class="tl-title">พนักงานฝ่ายปฏิบัติการ</div>
-            <div class="tl-date">2564 – 2565</div>
+            <div class="tl-title"
+                 data-th="พนักงานฝ่ายปฏิบัติการ"
+                 data-en="Operations Staff">พนักงานฝ่ายปฏิบัติการ</div>
+            <div class="tl-date" data-th="2564 – 2565" data-en="2021 – 2022">2564 – 2565</div>
           </div>
           <div class="tl-company">⚡ Flash Express</div>
           <ul class="tl-list">
-            <li>รับพัสดุ คีย์ข้อมูลที่อยู่จัดส่ง จัดทำสต็อกและสั่งซื้อของ</li>
-            <li>ดูแลบัญชีเงินสดและเงินจากการส่งพัสดุ</li>
-            <li>ติดตามงานและส่งรีพอร์ตประจำวัน</li>
+            <li data-th="รับพัสดุ คีย์ข้อมูลที่อยู่จัดส่ง จัดทำสต็อกและสั่งซื้อของ"
+                data-en="Received parcels, entered delivery addresses, managed stock and purchase orders.">
+              รับพัสดุ คีย์ข้อมูลที่อยู่จัดส่ง จัดทำสต็อกและสั่งซื้อของ
+            </li>
+            <li data-th="ดูแลบัญชีเงินสดและเงินจากการส่งพัสดุ"
+                data-en="Managed cash accounts and delivery payment records.">
+              ดูแลบัญชีเงินสดและเงินจากการส่งพัสดุ
+            </li>
+            <li data-th="ติดตามงานและส่งรีพอร์ตประจำวัน"
+                data-en="Tracked operations and submitted daily reports.">
+              ติดตามงานและส่งรีพอร์ตประจำวัน
+            </li>
           </ul>
         </div>
       </div>
@@ -214,12 +326,21 @@
         <div class="timeline-dot">🛒</div>
         <div class="timeline-card">
           <div class="tl-header">
-            <div class="tl-title">ขายหมาล่า (รายได้เสริม)</div>
-            <div class="tl-date">2562 – 2562</div>
+            <div class="tl-title"
+                 data-th="ธุรกิจส่วนตัว"
+                 data-en="Own Business">ธุรกิจส่วนตัว</div>
+            <div class="tl-date" data-th="2562 – 2562" data-en="2019 – 2019">2562 – 2562</div>
           </div>
-          <div class="tl-company">🍜 ร้านตัวเอง — ระหว่างเรียน</div>
+          <div class="tl-company"
+               data-th="🍜 หม่าล่า ร้านตัวเอง — ระหว่างเรียน"
+               data-en="🍜 Mala Restaurant — While Studying">
+            🍜 หม่าล่า ร้านตัวเอง — ระหว่างเรียน
+          </div>
           <ul class="tl-list">
-            <li>บริหารจัดการร้าน คิดเงิน จัดซื้อวัตถุดิบ และดูแลลูกค้าด้วยตัวเอง</li>
+            <li data-th="บริหารจัดการร้าน คิดเงิน จัดซื้อวัตถุดิบ และดูแลลูกค้าด้วยตัวเอง"
+                data-en="Managed all aspects of the restaurant — billing, ingredient procurement, and customer service.">
+              บริหารจัดการร้าน คิดเงิน จัดซื้อวัตถุดิบ และดูแลลูกค้าด้วยตัวเอง
+            </li>
           </ul>
         </div>
       </div>
@@ -234,7 +355,7 @@
 ================================================== -->
 <section id="skills">
   <div class="container">
-    <span class="section-tag reveal">ทักษะ</span>
+    <span class="section-tag reveal" data-th="ทักษะ" data-en="Skills">ทักษะ</span>
     <h2 class="section-title reveal reveal-d1">Technical Skills</h2>
     <div class="section-line reveal reveal-d2"></div>
 
@@ -243,7 +364,7 @@
       <!-- Frontend -->
       <div class="skill-card reveal">
         <div class="skill-card-icon">🎨</div>
-        <h3>Frontend Development</h3>
+        <h3 data-th="Frontend Development" data-en="Frontend Development">Frontend Development</h3>
         <div class="skill-tags">
           <span class="s-tag">HTML5</span>
           <span class="s-tag">CSS3</span>
@@ -255,7 +376,7 @@
       <!-- Backend -->
       <div class="skill-card reveal reveal-d1">
         <div class="skill-card-icon">⚙️</div>
-        <h3>Backend Development</h3>
+        <h3 data-th="Backend Development" data-en="Backend Development">Backend Development</h3>
         <div class="skill-tags">
           <span class="s-tag">PHP</span>
           <span class="s-tag">Node.js</span>
@@ -268,7 +389,7 @@
       <!-- Database -->
       <div class="skill-card reveal reveal-d2">
         <div class="skill-card-icon">🗄️</div>
-        <h3>Database</h3>
+        <h3 data-th="Database" data-en="Database">Database</h3>
         <div class="skill-tags">
           <span class="s-tag">SQL Server</span>
           <span class="s-tag">MySQL</span>
@@ -280,7 +401,7 @@
       <!-- Infrastructure -->
       <div class="skill-card reveal reveal-d3">
         <div class="skill-card-icon">🌐</div>
-        <h3>Network & Infrastructure</h3>
+        <h3 data-th="Network & Infrastructure" data-en="Network & Infrastructure">Network & Infrastructure</h3>
         <div class="skill-tags">
           <span class="s-tag">Network Setup</span>
           <span class="s-tag">Router/AP</span>
@@ -294,7 +415,7 @@
       <!-- Tools -->
       <div class="skill-card reveal reveal-d1">
         <div class="skill-card-icon">🛠️</div>
-        <h3>Tools & Version Control</h3>
+        <h3 data-th="Tools & Version Control" data-en="Tools & Version Control">Tools & Version Control</h3>
         <div class="skill-tags">
           <span class="s-tag">GitHub</span>
           <span class="s-tag">VS Code</span>
@@ -306,7 +427,7 @@
       <!-- AI Tools -->
       <div class="skill-card reveal reveal-d2">
         <div class="skill-card-icon">🤖</div>
-        <h3>AI Productivity</h3>
+        <h3 data-th="AI Productivity" data-en="AI Productivity">AI Productivity</h3>
         <div class="skill-tags">
           <span class="s-tag">GitHub Copilot</span>
           <span class="s-tag">ChatGPT</span>
@@ -318,7 +439,7 @@
 
     </div>
 
-    <!-- Soft Skills — descriptive cards instead of progress bars -->
+    <!-- Soft Skills -->
     <div style="margin-top: 56px;">
       <h3 style="font-family:'Kanit',sans-serif; font-size:20px; color:var(--navy); margin-bottom:28px;" class="reveal">
         Soft Skills
@@ -326,28 +447,43 @@
       <div class="soft-skills-grid">
         <div class="soft-skill-card reveal">
           <div class="soft-skill-icon">🧠</div>
-          <h4>การวิเคราะห์และแก้ปัญหา</h4>
-          <p>วิเคราะห์สาเหตุปัญหาให้กับ User ได้รวดเร็ว และมีวิธีการแก้ไขปัญหาให้ พร้อมแจ้งให้ User ทราบว่าปัญหาคืออะไร และแก้ไขได้ตรงจุดทั้งฮาร์ดแวร์และซอฟต์แวร์</p>
+          <h4 data-th="การวิเคราะห์และแก้ปัญหา" data-en="Analytical & Problem Solving">การวิเคราะห์และแก้ปัญหา</h4>
+          <p data-th="วิเคราะห์สาเหตุปัญหาให้กับ User ได้รวดเร็ว และมีวิธีการแก้ไขปัญหาให้ พร้อมแจ้งให้ User ทราบว่าปัญหาคืออะไร และแก้ไขได้ตรงจุดทั้งฮาร์ดแวร์และซอฟต์แวร์"
+             data-en="Quickly diagnose and resolve user issues, clearly communicating root causes and solutions across both hardware and software.">
+            วิเคราะห์สาเหตุปัญหาให้กับ User ได้รวดเร็ว และมีวิธีการแก้ไขปัญหาให้ พร้อมแจ้งให้ User ทราบว่าปัญหาคืออะไร และแก้ไขได้ตรงจุดทั้งฮาร์ดแวร์และซอฟต์แวร์
+          </p>
         </div>
         <div class="soft-skill-card reveal reveal-d1">
           <div class="soft-skill-icon">💬</div>
-          <h4>การสื่อสารและให้บริการ</h4>
-          <p>สื่อสารกับผู้ใช้งานและทีมอย่างชัดเจน พร้อมให้บริการด้วยความตั้งใจ และ สามารถติดต่อประสานงานกับทีมงานอื่นที่เกี่ยวข้องได้ดี</p>
+          <h4 data-th="การสื่อสารและให้บริการ" data-en="Communication & Service">การสื่อสารและให้บริการ</h4>
+          <p data-th="สื่อสารกับผู้ใช้งานและทีมอย่างชัดเจน พร้อมให้บริการด้วยความตั้งใจ และ สามารถติดต่อประสานงานกับทีมงานอื่นที่เกี่ยวข้องได้ดี"
+             data-en="Communicate clearly with users and teams, deliver service with dedication, and coordinate effectively with cross-functional teams.">
+            สื่อสารกับผู้ใช้งานและทีมอย่างชัดเจน พร้อมให้บริการด้วยความตั้งใจ และ สามารถติดต่อประสานงานกับทีมงานอื่นที่เกี่ยวข้องได้ดี
+          </p>
         </div>
         <div class="soft-skill-card reveal reveal-d2">
           <div class="soft-skill-icon">🤝</div>
-          <h4>การทำงานเป็นทีม</h4>
-          <p>ร่วมงานกับทีม และหน่วยงานอื่นได้ดี ช่วยแบ่งงานและประสานงานอย่างมีประสิทธิภาพ</p>
+          <h4 data-th="การทำงานเป็นทีม" data-en="Teamwork">การทำงานเป็นทีม</h4>
+          <p data-th="ร่วมงานกับทีม และหน่วยงานอื่นได้ดี ช่วยแบ่งงานและประสานงานอย่างมีประสิทธิภาพ"
+             data-en="Work collaboratively with internal and cross-department teams, delegating and coordinating tasks efficiently.">
+            ร่วมงานกับทีม และหน่วยงานอื่นได้ดี ช่วยแบ่งงานและประสานงานอย่างมีประสิทธิภาพ
+          </p>
         </div>
         <div class="soft-skill-card reveal reveal-d3">
           <div class="soft-skill-icon">📚</div>
-          <h4>เรียนรู้เทคโนโลยีใหม่</h4>
-          <p>หาเครื่องมือ และ เทคโนโลยีใหม่ๆ (AI) ให้กับองค์กร รวมถึงการจัดอบรมให้กับพนักงานภายในองค์กร เพื่อพัฒนางานให้ทันต่อความต้องการ</p>
+          <h4 data-th="เรียนรู้เทคโนโลยีใหม่" data-en="Continuous Learning">เรียนรู้เทคโนโลยีใหม่</h4>
+          <p data-th="หาเครื่องมือ และ เทคโนโลยีใหม่ๆ (AI) ให้กับองค์กร รวมถึงการจัดอบรมให้กับพนักงานภายในองค์กร เพื่อพัฒนางานให้ทันต่อความต้องการ"
+             data-en="Research and introduce new technologies (including AI) to the organization, and conduct internal training sessions to keep teams up to date.">
+            หาเครื่องมือ และ เทคโนโลยีใหม่ๆ (AI) ให้กับองค์กร รวมถึงการจัดอบรมให้กับพนักงานภายในองค์กร เพื่อพัฒนางานให้ทันต่อความต้องการ
+          </p>
         </div>
         <div class="soft-skill-card reveal reveal-d4">
           <div class="soft-skill-icon">⏱️</div>
-          <h4>บริหารเวลาและจัดลำดับงาน</h4>
-          <p>จัดลำดับงานจากความสำคัญและความเร่งด่วน พร้อมส่งงานตรงตามกำหนดเวลา</p>
+          <h4 data-th="บริหารเวลาและจัดลำดับงาน" data-en="Time Management">บริหารเวลาและจัดลำดับงาน</h4>
+          <p data-th="จัดลำดับงานจากความสำคัญและความเร่งด่วน พร้อมส่งงานตรงตามกำหนดเวลา"
+             data-en="Prioritize tasks by importance and urgency, consistently delivering on schedule.">
+            จัดลำดับงานจากความสำคัญและความเร่งด่วน พร้อมส่งงานตรงตามกำหนดเวลา
+          </p>
         </div>
       </div>
     </div>
@@ -362,7 +498,7 @@
 <section id="projects">
   <div class="container">
     <div class="text-center">
-      <span class="section-tag reveal">ผลงาน</span>
+      <span class="section-tag reveal" data-th="ผลงาน" data-en="Projects">ผลงาน</span>
       <h2 class="section-title reveal reveal-d1">My Projects</h2>
       <div class="section-line reveal reveal-d2" style="margin: 0 auto 48px;"></div>
     </div>
@@ -376,9 +512,15 @@
           <div class="project-thumb-icon">📦</div>
         </div>
         <div class="project-body">
-          <div class="project-title">ระบบจัดการคลังอุปกรณ์ IT </div>
-          <div class="project-title">(ประเภทธุรกิจ :  ก่อสร้าง)</div>
-          <p class="project-desc">
+          <div class="project-title"
+               data-th="ระบบจัดการคลังอุปกรณ์ IT"
+               data-en="IT Inventory Management System">ระบบจัดการคลังอุปกรณ์ IT</div>
+          <div class="project-title"
+               data-th="(ประเภทธุรกิจ : ก่อสร้าง)"
+               data-en="(Industry: Construction)">(ประเภทธุรกิจ : ก่อสร้าง)</div>
+          <p class="project-desc"
+             data-th="ระบบบริหารจัดการอุปกรณ์ IT สำหรับธุรกิจรับเหมาก่อสร้าง รองรับการโอนย้าย ส่งมอบ รับคืน แจ้งซ่อม คำนวณค่าเช่า พร้อมข้อมูลและรองรับมือถือ"
+             data-en="IT asset management system for a construction business — supports transfers, deliveries, returns, repair requests, rental fee calculations, and is mobile-responsive.">
             ระบบบริหารจัดการอุปกรณ์ IT สำหรับธุรกิจรับเหมาก่อสร้าง
             รองรับการโอนย้าย ส่งมอบ รับคืน แจ้งซ่อม คำนวณค่าเช่า
             พร้อมข้อมูลและรองรับมือถือ
@@ -399,8 +541,12 @@
           <div class="project-thumb-icon">🚗</div>
         </div>
         <div class="project-body">
-          <div class="project-title">ระบบจองรถภายในองค์กร</div>
-          <p class="project-desc">
+          <div class="project-title"
+               data-th="ระบบจองรถภายในองค์กร"
+               data-en="Internal Car Booking System">ระบบจองรถภายในองค์กร</div>
+          <p class="project-desc"
+             data-th="ระบบจองรถผ่าน Calendar แยก Admin/User ตรวจสอบรถว่างอัตโนมัติ ป้องกันการจองซ้ำ เชื่อมต่อฐานข้อมูลแบบ Real-time"
+             data-en="Calendar-based vehicle booking with Admin/User roles, automatic availability checking, duplicate booking prevention, and real-time database sync.">
             ระบบจองรถผ่าน Calendar แยก Admin/User ตรวจสอบรถว่างอัตโนมัติ
             ป้องกันการจองซ้ำ เชื่อมต่อฐานข้อมูลแบบ Real-time
           </p>
@@ -420,8 +566,12 @@
           <div class="project-thumb-icon">🌐</div>
         </div>
         <div class="project-body">
-          <div class="project-title">ปรับปรุงระบบ Network — Kirirhom Khaokho</div>
-          <p class="project-desc">
+          <div class="project-title"
+               data-th="ปรับปรุงระบบ Network — Kirirhom Khaokho"
+               data-en="Network Upgrade — Kirirhom Khaokho">ปรับปรุงระบบ Network — Kirirhom Khaokho</div>
+          <p class="project-desc"
+             data-th="Config Access Point ใหม่ทั้งหมด จัดกลุ่ม IP Network เดินสาย RJ45 และไฟเบอร์ แก้ปัญหากล้องวงจรปิด IP และ AP ที่กระจัดกระจาย"
+             data-en="Full reconfiguration of access points, IP network segmentation, RJ45 and fiber cabling, and troubleshooting of scattered CCTV and AP systems.">
             Config Access Point ใหม่ทั้งหมด จัดกลุ่ม IP Network
             เดินสาย RJ45 และไฟเบอร์ แก้ปัญหากล้องวงจรปิด IP และ AP ที่กระจัดกระจาย
           </p>
@@ -441,8 +591,12 @@
           <div class="project-thumb-icon">📚</div>
         </div>
         <div class="project-body">
-          <div class="project-title">อบรม Google Workspace</div>
-          <p class="project-desc">
+          <div class="project-title"
+               data-th="อบรม Google Workspace"
+               data-en="Google Workspace Training">อบรม Google Workspace</div>
+          <p class="project-desc"
+             data-th="จัดอบรมพนักงาน Google Workspace จัดทำคู่มือการใช้งาน และออกแบบ Company Profile องค์กร"
+             data-en="Conducted employee training on Google Workspace, created usage manuals, and designed the organization's Company Profile.">
             จัดอบรมพนักงาน Google Workspace
             จัดทำคู่มือการใช้งาน และออกแบบ Company Profile องค์กร
           </p>
@@ -461,11 +615,16 @@
           <div class="project-thumb-icon">🏢</div>
         </div>
         <div class="project-body">
-          <div class="project-title">ออกแบบ Company Profile</div>
-          <p class="project-desc">
-            ออกแบบ Design Company Profile องค์กร เพื่อใช้ในการนำเสนอข้อมูลองค์กรให้กับลูกค้าและพันธมิตรทางธุรกิจ</p>
+          <div class="project-title"
+               data-th="ออกแบบ Company Profile"
+               data-en="Company Profile Design">ออกแบบ Company Profile</div>
+          <p class="project-desc"
+             data-th="ออกแบบ Design Company Profile องค์กร เพื่อใช้ในการนำเสนอข้อมูลองค์กรให้กับลูกค้าและพันธมิตรทางธุรกิจ"
+             data-en="Designed the organization's Company Profile for presenting corporate information to clients and business partners.">
+            ออกแบบ Design Company Profile องค์กร เพื่อใช้ในการนำเสนอข้อมูลองค์กรให้กับลูกค้าและพันธมิตรทางธุรกิจ
+          </p>
           <div class="project-tags">
-            <span class="p-tag">canva</span>
+            <span class="p-tag">Canva</span>
           </div>
         </div>
       </div>
@@ -492,13 +651,16 @@
 
       <!-- ซ้าย: ข้อความและลิงก์ติดต่อ -->
       <div>
-        <span class="section-tag reveal">ติดต่อ</span>
+        <span class="section-tag reveal" data-th="ติดต่อ" data-en="Contact">ติดต่อ</span>
         <h2 class="section-title reveal reveal-d1" style="color:white;">
-          พูดคุยกัน<span style="color:var(--accent);">ได้เลย</span>
+          <span data-th="พูดคุยกัน" data-en="Let's Talk">พูดคุยกัน</span><span style="color:var(--accent);"
+               data-th="ได้เลย" data-en=" Anytime">ได้เลย</span>
         </h2>
         <div class="section-line reveal reveal-d2"></div>
 
-        <p class="contact-desc reveal reveal-d2">
+        <p class="contact-desc reveal reveal-d2"
+           data-th="เปิดรับโอกาสใหม่ๆ และความท้าทายในการทำงานเสมอ กล้านำเสนอ กล้าตั้งคำถาม กล้าเรียนรู้สิ่งใหม่ๆ อยู่เสมอ หากต้องการพูดคุยเกี่ยวกับงาน IT, Web Development หรือเทคโนโลยีใหม่ๆ"
+           data-en="Always open to new opportunities and challenges — I love pitching ideas, asking questions, and learning something new. Feel free to reach out about IT, Web Development, or anything tech-related.">
           เปิดรับโอกาสใหม่ๆ และความท้าทายในการทำงานเสมอ กล้านำเสนอ กล้าตั้งคำถาม กล้าเรียนรู้สิ่งใหม่ๆ อยู่เสมอ หากต้องการพูดคุยเกี่ยวกับงาน IT, Web Development หรือเทคโนโลยีใหม่ๆ
         </p>
 
@@ -535,71 +697,55 @@
       </div>
 
       <!-- ขวา: ฟอร์มติดต่อ -->
-        <div class="reveal reveal-d2">
+      <div class="reveal reveal-d2">
+        <form id="contactForm" class="contact-form">
 
-          <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <label data-th="ชื่อผู้ติดต่อ" data-en="Your Name">ชื่อผู้ติดต่อ</label>
+            <input type="text" name="name" class="form-input"
+                   data-placeholder-th="เช่น คุณสมชาย ใจดี"
+                   data-placeholder-en="e.g. John Smith"
+                   placeholder="เช่น คุณสมชาย ใจดี" required>
+          </div>
 
-            <div class="form-group">
-              <label>ชื่อผู้ติดต่อ</label>
-              <input
-                type="text"
-                name="name"
-                class="form-input"
-                placeholder="เช่น คุณสมชาย ใจดี"
-                required>
-            </div>
+          <div class="form-group">
+            <label data-th="บริษัท" data-en="Company">บริษัท</label>
+            <input type="text" name="company" class="form-input"
+                   data-placeholder-th="เช่น บริษัท ABC จำกัด"
+                   data-placeholder-en="e.g. ABC Co., Ltd."
+                   placeholder="เช่น บริษัท ABC จำกัด" required>
+          </div>
 
-            <div class="form-group">
-              <label>บริษัท</label>
-              <input
-                type="text"
-                name="company"
-                class="form-input"
-                placeholder="เช่น บริษัท ABC จำกัด"
-                required>
-            </div>
+          <div class="form-group">
+            <label data-th="อีเมลของคุณ" data-en="Your Email">อีเมลของคุณ</label>
+            <input type="email" name="email" class="form-input"
+                   placeholder="company@example.com" required>
+          </div>
 
-            <div class="form-group">
-              <label>อีเมลของคุณ</label>
-              <input
-                type="email"
-                name="email"
-                class="form-input"
-                placeholder="company@example.com"
-                required>
-            </div>
+          <div class="form-group">
+            <label data-th="เบอร์โทรศัพท์" data-en="Phone Number">เบอร์โทรศัพท์</label>
+            <input type="tel" name="phone" class="form-input"
+                   data-placeholder-th="เช่น 080-123-4567"
+                   data-placeholder-en="e.g. 080-123-4567"
+                   placeholder="เช่น 080-123-4567" required>
+          </div>
 
-            <div class="form-group">
-              <label>เบอร์โทรศัพท์</label>
-              <input
-                type="tel"
-                name="phone"
-                class="form-input"
-                placeholder="เช่น 080-123-4567"
-                required>
-            </div>
+          <div class="form-group">
+            <label data-th="ข้อความ" data-en="Message">ข้อความ</label>
+            <textarea name="message" class="form-input"
+                      data-placeholder-th="สวัสดีครับ ผมสนใจ..."
+                      data-placeholder-en="Hi Golf, I'm interested in..."
+                      placeholder="สวัสดีครับ ผมสนใจ..." required></textarea>
+          </div>
 
-            <div class="form-group">
-              <label>ข้อความ</label>
-              <textarea name="message"class="form-input"
-                placeholder="สวัสดีครับ ผมสนใจ..."
-                required></textarea>
-            </div>
+          <button type="submit" class="btn-primary" style="align-self:flex-start;"
+                  data-th="ส่งข้อความ ✉️" data-en="Send Message ✉️">
+            ส่งข้อความ ✉️
+          </button>
 
-            <button
-              type="submit"
-              class="btn-primary"
-              style="align-self:flex-start;">
-              ส่งข้อความ ✉️
-            </button>
+          <p id="form-msg" style="display:none;font-size:13px;color:#4ade80;margin-top:10px;"></p>
 
-            <p id="form-msg"
-              style="display:none;font-size:13px;color:#4ade80;margin-top:10px;">
-            </p>
-
-          </form>
-
-        </div>
+        </form>
       </div>
 
     </div>
@@ -613,7 +759,8 @@
 <footer>
   <div class="container">
     <p>
-      ออกแบบและพัฒนาโดย <a href="#">กฤษฎา มะโนน้อม</a>
+      <span data-th="ออกแบบและพัฒนาโดย" data-en="Designed & Built by">ออกแบบและพัฒนาโดย</span>
+      <a href="#" data-th="กฤษฎา มะโนน้อม" data-en="Kidsada Manonome">กฤษฎา มะโนน้อม</a>
       &nbsp;|&nbsp;
       <a href="https://github.com/GOLFZILLA-2507" target="_blank">GitHub</a>
       &nbsp;|&nbsp;
@@ -628,47 +775,100 @@
 ================================================== -->
 <script>
 // ===================================================
+// LANGUAGE SYSTEM — ระบบสลับภาษา EN/TH
+// ===================================================
+
+// กำหนด roles ทั้งสองภาษา
+const rolesByLang = {
+  th: [
+    'IT Support Specialist',
+    'Infrastructure Engineer',
+    'Web Developer (PHP/Node.js)',
+    'Network Administrator',
+    'System Administrator',
+  ],
+  en: [
+    'IT Support Specialist',
+    'Infrastructure Engineer',
+    'Web Developer (PHP/Node.js)',
+    'Network Administrator',
+    'System Administrator',
+  ]
+};
+
+let currentLang = localStorage.getItem('lang') || 'th';
+
+function toggleLanguage() {
+  setLanguage(currentLang === 'en' ? 'th' : 'en');
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+
+  // อัปเดต html lang attribute
+  document.documentElement.lang = lang === 'th' ? 'th' : 'en';
+
+  // อัปเดต pill toggle
+  const pill = document.getElementById('langToggle');
+  if (pill) pill.classList.toggle('is-th', lang === 'th');
+
+  // อัปเดตทุก element ที่มี data-th / data-en
+  document.querySelectorAll('[data-th][data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val !== null) {
+      el.innerHTML = val;
+    }
+  });
+
+  // อัปเดต placeholder ของ input/textarea
+  document.querySelectorAll('[data-placeholder-th][data-placeholder-en]').forEach(el => {
+    el.placeholder = el.getAttribute('data-placeholder-' + lang) || '';
+  });
+
+  // รีสตาร์ท typing animation ด้วย roles ชุดใหม่
+  resetTyping(lang);
+}
+
+// ===================================================
 // 1. NAVBAR — เปลี่ยนสีเมื่อ scroll ลง
 // ===================================================
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
 });
 
 // ===================================================
 // 2. TYPING ANIMATION — สลับ text ใน hero
 // ===================================================
-const roles = [
-  'IT Support Specialist',
-  'Infrastructure Engineer',
-  'Web Developer (PHP/Node.js)',
-  'Network Administrator',
-  'System Administrator',
-];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
+let typingTimer = null;
 const typingEl = document.getElementById('typing-text');
 
-function typeEffect() {
+function resetTyping(lang) {
+  clearTimeout(typingTimer);
+  roleIndex = 0;
+  charIndex = 0;
+  isDeleting = false;
+  typingEl.textContent = '';
+  typeEffect(lang);
+}
+
+function typeEffect(lang) {
+  const roles = rolesByLang[lang || currentLang];
   const currentRole = roles[roleIndex];
 
   if (!isDeleting) {
-    // พิมพ์ทีละตัว
     typingEl.textContent = currentRole.slice(0, charIndex + 1);
     charIndex++;
     if (charIndex === currentRole.length) {
-      // หยุดก่อนลบ
       isDeleting = true;
-      setTimeout(typeEffect, 1600);
+      typingTimer = setTimeout(() => typeEffect(lang), 1600);
       return;
     }
   } else {
-    // ลบทีละตัว
     typingEl.textContent = currentRole.slice(0, charIndex - 1);
     charIndex--;
     if (charIndex === 0) {
@@ -676,9 +876,11 @@ function typeEffect() {
       roleIndex = (roleIndex + 1) % roles.length;
     }
   }
-  setTimeout(typeEffect, isDeleting ? 50 : 80);
+  typingTimer = setTimeout(() => typeEffect(lang), isDeleting ? 50 : 80);
 }
-typeEffect();
+
+// เริ่มต้น typing
+typeEffect(currentLang);
 
 // ===================================================
 // 3. SCROLL REVEAL — Fade in เมื่อ scroll ถึง element
@@ -687,23 +889,13 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-
-      // ถ้าเป็น progress bar ให้ animate ด้วย
       const bars = entry.target.querySelectorAll('.skill-bar-fill');
-      bars.forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
+      bars.forEach(bar => { bar.style.width = bar.dataset.width + '%'; });
     }
   });
-}, {
-  threshold: 0.12,
-  rootMargin: '0px 0px -40px 0px'
-});
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-// ลงทะเบียนทุก element ที่มี class reveal
-document.querySelectorAll('.reveal').forEach(el => {
-  revealObserver.observe(el);
-});
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ===================================================
 // 4. COUNTER ANIMATION — ตัวเลขใน hero วิ่งขึ้น
@@ -714,21 +906,19 @@ function animateCounter(el, target, duration = 1500) {
   const timer = setInterval(() => {
     start += step;
     if (start >= target) {
-      el.textContent = target + (target === 150 ? '+' : '+');
+      el.textContent = target + '+';
       clearInterval(timer);
     } else {
-      el.textContent = Math.floor(start) + (target === 150 ? '+' : '+');
+      el.textContent = Math.floor(start) + '+';
     }
   }, 16);
 }
 
-// Observer สำหรับ counter ใน hero
 const counters = document.querySelectorAll('[data-count]');
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const target = parseInt(entry.target.dataset.count);
-      animateCounter(entry.target, target);
+      animateCounter(entry.target, parseInt(entry.target.dataset.count));
       counterObserver.unobserve(entry.target);
     }
   });
@@ -751,9 +941,8 @@ function toggleMenu() {
 }
 
 // ===================================================
-// 6. FORM SUBMIT — Google Sheet API (แก้ CORS ด้วย no-cors)
+// 6. FORM SUBMIT — Google Sheet API
 // ===================================================
-
 const SCRIPT_URL =
 'https://script.google.com/macros/s/AKfycbwQ7JedsAhjIFliHgLOBaRWAXGiJvKi6KWrRNpTJBSTmdn_lF1Hs7f9NZxbl7nC/exec';
 
@@ -762,20 +951,16 @@ const formMsg = document.getElementById('form-msg');
 
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-
   const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const isEn = currentLang === 'en';
   submitBtn.disabled = true;
-  submitBtn.textContent = 'กำลังส่ง...';
+  submitBtn.textContent = isEn ? 'Sending...' : 'กำลังส่ง...';
 
   try {
-    // ใช้ URLSearchParams แทน FormData เพื่อให้ Apps Script รับได้
     const formData = new FormData(contactForm);
     const params = new URLSearchParams();
-    for (const [key, value] of formData.entries()) {
-      params.append(key, value);
-    }
+    for (const [key, value] of formData.entries()) params.append(key, value);
 
-    // ใช้ mode: 'no-cors' เพื่อหลีกเลี่ยง CORS error
     await fetch(SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -783,21 +968,18 @@ contactForm.addEventListener('submit', async (e) => {
       body: params.toString()
     });
 
-    // no-cors จะไม่รู้ว่าสำเร็จหรือไม่ แต่ถ้าไม่ throw = ส่งได้
     formMsg.style.display = 'block';
     formMsg.style.color = '#4ade80';
-    formMsg.textContent = '✅ ส่งข้อความเรียบร้อยแล้ว';
+    formMsg.textContent = isEn ? '✅ Message sent successfully!' : '✅ ส่งข้อความเรียบร้อยแล้ว';
     contactForm.reset();
-
   } catch (error) {
-    console.error(error);
     formMsg.style.display = 'block';
     formMsg.style.color = '#ef4444';
-    formMsg.textContent = '❌ ไม่สามารถเชื่อมต่อระบบได้';
+    formMsg.textContent = isEn ? '❌ Connection failed. Please try again.' : '❌ ไม่สามารถเชื่อมต่อระบบได้';
   }
 
   submitBtn.disabled = false;
-  submitBtn.textContent = 'ส่งข้อความ ✉️';
+  submitBtn.textContent = isEn ? 'Send Message ✉️' : 'ส่งข้อความ ✉️';
 });
 
 // ===================================================
@@ -809,17 +991,17 @@ const navLinks = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
-    }
+    if (window.scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
   });
   navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current
-      ? 'var(--accent)'
-      : '';
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
   });
 });
+
+// ===================================================
+// INIT — โหลดภาษาที่บันทึกไว้
+// ===================================================
+setLanguage(currentLang);
 </script>
 
 </body>
