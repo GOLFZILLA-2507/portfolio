@@ -591,7 +591,7 @@
       <div class="project-card reveal reveal-d1">
         <a class="project-thumb thumb-teal demo-thumb" href="img/Demo/Demo-bookingcar_system/Screenshot_1.png" data-gallery="bookingcar" aria-label="Open Car Booking System demo gallery">
           <img src="img/Demo/Demo-bookingcar_system/Screenshot_1.png" alt="Car Booking System demo screenshot" loading="lazy">
-          <span class="project-demo-badge">Demo 7 Screens</span>
+          <span class="project-demo-badge">Demo 5 Screens</span>
           <div class="project-thumb-label">Car Booking<br>System</div>
         </a>
         <div class="project-body">
@@ -617,7 +617,7 @@
       <div class="project-card reveal reveal-d2">
         <a class="project-thumb thumb-blue demo-thumb" href="img/Demo/Demo-delivery_app/Screenshot_1.png" data-gallery="delivery" aria-label="Open Delivery Document App demo gallery">
           <img src="img/Demo/Demo-delivery_app/Screenshot_1.png" alt="Delivery document app demo screenshot" loading="lazy">
-          <span class="project-demo-badge">Demo 5 Screens</span>
+          <span class="project-demo-badge">Demo 4 Screens</span>
           <div class="project-thumb-label">Delivery Document<br>App</div>
         </a>
         <div class="project-body">
@@ -760,8 +760,6 @@
 
     </div>
 
-   
-
     <!-- GitHub Link -->
     <div style="text-align:center; margin-top:40px;" class="reveal">
       <a href="https://github.com/GOLFZILLA-2507" target="_blank" class="btn-primary" style="background:var(--navy); color:white; display:inline-flex;">
@@ -771,7 +769,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- ===================================================
      CONTACT — ติดต่อ
@@ -981,6 +978,12 @@ function setLanguage(lang) {
 
   // รีสตาร์ท typing animation ด้วย roles ชุดใหม่
   resetTyping(lang);
+
+  // อัปเดตคำอธิบายใน demo gallery หากกำลังเปิด modal อยู่
+  const openedDemoModal = document.getElementById('demoModal');
+  if (openedDemoModal && openedDemoModal.classList.contains('is-open')) {
+    renderDemoGallery();
+  }
 }
 
 // ===================================================
@@ -1087,33 +1090,45 @@ const demoGalleries = {
     images: [
       {
         src: 'img/Demo/Demo-inventory_system/Screenshot_1.png',
-        title: 'Dashboard สรุปภาพรวมคลังอุปกรณ์',
-        desc: 'หน้าสรุปมูลค่าเช่า จำนวนอุปกรณ์ จำนวนประเภท และกราฟแยกเกรดอุปกรณ์ ใช้ดูภาพรวมของระบบได้จากหน้าเดียว'
+        titleTh: 'Dashboard สรุปภาพรวมคลังอุปกรณ์',
+        titleEn: 'Inventory Dashboard Overview',
+        descTh: 'หน้าสรุปมูลค่าเช่า จำนวนอุปกรณ์ จำนวนประเภท และกราฟแยกเกรดอุปกรณ์ ใช้ดูภาพรวมของระบบได้จากหน้าเดียว',
+        descEn: 'Dashboard for summarizing rental value, total equipment, equipment categories, and grade-based charts so the overall inventory status can be reviewed from one screen.'
       },
       {
         src: 'img/Demo/Demo-inventory_system/Screenshot_2.png',
-        title: 'รายการอุปกรณ์และตัวกรองข้อมูล',
-        desc: 'หน้าค้นหาและกรองรายการอุปกรณ์ตามโครงการ สถานะซ่อม และเกรด ช่วยให้ติดตามทรัพย์สิน IT ได้เร็วขึ้น'
+        titleTh: 'หน้าสรุปรายละเอียดค่าเช่าและส่วนลดตามเกรดอุปกรณ์',
+        titleEn: 'Rental Summary and Grade-Based Discount',
+        descTh: 'หน้าสรุปรายละเอียดค่าเช่า แสดงจำนวนอุปกรณ์ทั้งหมดภายในโครงการ พร้อมระบบคำนวณส่วนลดสำหรับอุปกรณ์คอมพิวเตอร์ที่มีอายุการใช้งาน โดยอ้างอิงจากเกรดอุปกรณ์ เช่น เกรด A ไม่มีส่วนลด, เกรด B ส่วนลด 10%, เกรด C ส่วนลด 40% และเกรด D ส่วนลด 70% ของราคาค่าเช่าทั้งหมด ระบบเริ่มนับวันคิดค่าเช่าตั้งแต่วันที่โครงการกดรับอุปกรณ์ในระบบ\n\nเกรดอุปกรณ์ถูกคำนวณจากสเปคและอายุการใช้งานเทียบกับปี พ.ศ. ปัจจุบัน: เกรด A อายุ 1-3 ปี, เกรด B อายุ 4-6 ปี, เกรด C อายุ 7-8 ปี และเกรด D อายุ 8 ปีขึ้นไป',
+        descEn: 'Rental summary page showing all equipment assigned to a project, with automatic discount calculation for computer equipment based on usage age and equipment grade. Grade A has no discount, Grade B receives a 10% discount, Grade C receives a 40% discount, and Grade D receives a 70% discount from the total rental price. Rental calculation starts from the date the project confirms equipment receipt in the system.\n\nEquipment grades are calculated from device specifications and age compared with the current Buddhist calendar year: Grade A = 1-3 years, Grade B = 4-6 years, Grade C = 7-8 years, and Grade D = more than 8 years.'
       },
       {
         src: 'img/Demo/Demo-inventory_system/Screenshot_3.png',
-        title: 'รายละเอียดข้อมูลอุปกรณ์',
-        desc: 'หน้ารายละเอียดสำหรับตรวจสอบข้อมูลอุปกรณ์ รหัสทรัพย์สิน ประเภท สถานะ และข้อมูลที่เกี่ยวข้องกับการใช้งาน'
+        titleTh: 'หน้าตรวจสอบรายการซ้ำของอุปกรณ์',
+        titleEn: 'Duplicate Equipment Review',
+        descTh: 'หน้าสำหรับแสดงรายละเอียดรายการซ้ำของอุปกรณ์ เพื่อให้ผู้ดูแลตรวจสอบและจัดการข้อมูลที่ซ้ำกันได้ โดยมีเงื่อนไขว่าการลบอุปกรณ์จะทำได้เฉพาะรายการที่ยังไม่มีผู้ใช้งานเท่านั้น เพื่อลดผลกระทบต่อข้อมูลการใช้งานจริง',
+        descEn: 'Page for reviewing duplicate equipment records so administrators can verify and clean up duplicate data. Equipment can only be deleted when it has no assigned user, preventing impact on actual usage records.'
       },
       {
         src: 'img/Demo/Demo-inventory_system/Screenshot_4.png',
-        title: 'จัดการการโอนย้ายและส่งมอบ',
-        desc: 'รองรับงานโอนย้าย ส่งมอบ หรือรับคืนอุปกรณ์ระหว่างหน่วยงานและโครงการ ลดการติดตามด้วยเอกสารแยกหลายชุด'
+        titleTh: 'กำหนดเดือนและปีรับอุปกรณ์เข้าโครงการ',
+        titleEn: 'Set Project Equipment Receiving Period',
+        descTh: 'หน้าสำหรับกำหนดเดือนและปีของการรับอุปกรณ์เข้าโครงการ เพื่อนำไปใช้คำนวณค่าเช่า เหมาะสำหรับกรณีที่มีการส่งมอบอุปกรณ์ไปก่อนหน้าที่ระบบจะเริ่มใช้งาน',
+        descEn: 'Page for setting the month and year when equipment was received by a project. This information is used for rental calculation, especially for equipment delivered before the system was officially implemented.'
       },
       {
         src: 'img/Demo/Demo-inventory_system/Screenshot_5.png',
-        title: 'ระบบแจ้งซ่อมอุปกรณ์',
-        desc: 'ใช้บันทึกสถานะซ่อมและติดตามงานซ่อมอุปกรณ์ IT เพื่อให้ทีมเห็นประวัติและสถานะล่าสุด'
+        titleTh: 'ระบบแจ้งซ่อมอุปกรณ์',
+        titleEn: 'Equipment Repair Tracking',
+        descTh: 'ใช้บันทึกสถานะซ่อมและติดตามงานซ่อมอุปกรณ์ IT เพื่อให้ทีมเห็นประวัติและสถานะล่าสุด',
+        descEn: 'Used to record repair status and track IT equipment repair requests, allowing the team to review repair history and current status.'
       },
       {
         src: 'img/Demo/Demo-inventory_system/Screenshot_6.png',
-        title: 'รายงานและข้อมูลสำหรับผู้ดูแล',
-        desc: 'หน้ารายงานช่วยสรุปข้อมูลคลัง อุปกรณ์ และค่าใช้จ่าย เพื่อใช้ตรวจสอบหรือส่งต่อข้อมูลให้ผู้เกี่ยวข้อง'
+        titleTh: 'กำหนดราคาค่าเช่าอุปกรณ์',
+        titleEn: 'Set Equipment Rental Price',
+        descTh: 'หน้าสำหรับกำหนดราคาค่าเช่าของอุปกรณ์แต่ละประเภท เพื่อใช้เป็นข้อมูลตั้งต้นในการคำนวณค่าเช่าภายในระบบ',
+        descEn: 'Page for setting rental prices by equipment type. These values are used as the base data for rental fee calculation in the system.'
       }
     ]
   },
@@ -1122,38 +1137,38 @@ const demoGalleries = {
     images: [
       {
         src: 'img/Demo/Demo-bookingcar_system/Screenshot_1.png',
-        title: 'หน้าจัดการรายการจองรถ',
-        desc: 'หน้า Admin สำหรับอนุมัติหรือจัดการคำขอจองรถ มีตารางรายการ วันที่เดินทาง จำนวนวัน สถานะ และปุ่มจัดการ'
+        titleTh: 'หน้าจัดการรายการจองรถ',
+        titleEn: 'Booking Request Management',
+        descTh: 'หน้า Admin สำหรับอนุมัติหรือจัดการคำขอจองรถ มีตารางรายการ วันที่เดินทาง จำนวนวัน สถานะ และปุ่มจัดการ',
+        descEn: 'Admin page for approving and managing vehicle booking requests, including booking list, travel dates, duration, status, and action controls.'
       },
       {
         src: 'img/Demo/Demo-bookingcar_system/Screenshot_2.png',
-        title: 'ปฏิทินตรวจสอบการจอง',
-        desc: 'แสดงรายการจองในรูปแบบปฏิทิน ช่วยให้เห็นช่วงเวลารถถูกใช้งานและลดปัญหาจองซ้ำ'
+        titleTh: 'จัดการข้อมูลรถภายในสำนักงาน',
+        titleEn: 'Office Vehicle Management',
+        descTh: 'หน้าสำหรับเพิ่ม แก้ไข และลบข้อมูลรถภายในสำนักงาน เพื่อให้ผู้ดูแลสามารถจัดการข้อมูลรถที่พร้อมใช้งานในระบบได้',
+        descEn: 'Page for adding, editing, and deleting office vehicle records so administrators can manage vehicles available for booking.'
       },
       {
         src: 'img/Demo/Demo-bookingcar_system/Screenshot_3.png',
-        title: 'แบบฟอร์มสร้างคำขอจองรถ',
-        desc: 'ผู้ใช้กรอกข้อมูลผู้จอง ปลายทาง วันที่ใช้งาน และรายละเอียดที่จำเป็น เพื่อส่งคำขอให้ผู้ดูแลอนุมัติ'
+        titleTh: 'รายการจองรถตามลำดับสิทธิ์อนุมัติ',
+        titleEn: 'Approval-Based Booking List',
+        descTh: 'หน้าสำหรับแสดงรายการจองรถทั้งหมดที่ผู้จองส่งเข้ามา โดยจัดลำดับตามขั้นตอนและลำดับขั้นของสิทธิ์ผู้อนุมัติ เพื่อให้ตรวจสอบสถานะการอนุมัติได้ชัดเจน',
+        descEn: 'Page showing all submitted vehicle booking requests, organized by approval workflow and approver permission level so approval status can be clearly tracked.'
       },
       {
         src: 'img/Demo/Demo-bookingcar_system/Screenshot_4.png',
-        title: 'รายการรออนุมัติ',
-        desc: 'แยกรายการที่รอผู้บังคับบัญชาหรือ Admin ตรวจสอบ ทำให้ขั้นตอนอนุมัติชัดเจนและติดตามง่าย'
-      },
-      {
-        src: 'img/Demo/Demo-bookingcar_system/Screenshot_5.png',
-        title: 'จัดการข้อมูลรถ',
-        desc: 'หน้าสำหรับเพิ่ม แก้ไข และตรวจสอบสถานะรถในระบบ เพื่อให้ข้อมูลรถพร้อมใช้งานอยู่เสมอ'
-      },
-      {
-        src: 'img/Demo/Demo-bookingcar_system/Screenshot_6.png',
-        title: 'มุมมองผู้ใช้งานทั่วไป',
-        desc: 'หน้าสำหรับผู้ใช้งานดูรายการจองและสถานะคำขอของตัวเอง โดยแยกสิทธิ์จากผู้ดูแลระบบ'
+        titleTh: 'ตั้งค่าสถานะรถหลังการใช้งาน',
+        titleEn: 'Vehicle Status Update',
+        descTh: 'หน้าสำหรับตั้งค่าสถานะของรถ เช่น เมื่อผู้ใช้รถนำรถกลับมาคืนสำนักงานแล้ว Admin สามารถปรับสถานะรถให้เป็นว่าง เพื่อจัดสรรรถให้ผู้ใช้งานคนถัดไปได้',
+        descEn: 'Page for updating vehicle status after use. For example, when a vehicle is returned to the office, an admin can mark it as available so it can be assigned to the next user.'
       },
       {
         src: 'img/Demo/Demo-bookingcar_system/Screenshot_7.png',
-        title: 'สรุปการใช้งานและประวัติ',
-        desc: 'ใช้ดูข้อมูลย้อนหลังของการจองรถ ช่วยตรวจสอบประวัติการใช้งานและการอนุมัติ'
+        titleTh: 'Calendar สำหรับตรวจสอบและประสานงานการเดินทาง',
+        titleEn: 'Travel Coordination Calendar',
+        descTh: 'หน้า Calendar แสดงรายการจองรถ เพื่อให้ผู้ใช้งานได้ตรวจสอบว่ามีใครเดินทางไปยังจุดหมายเดียวกัน ช่วยให้พนักงานสามารถติดต่อประสานงาน รวมถึงเพิ่ม แก้ไข หรือลบรายชื่อผู้ร่วมเดินทางในกรณีที่มีจุดหมายปลายทางเดียวกัน',
+        descEn: 'Calendar page showing vehicle bookings so users can check who is traveling to the same destination. It helps employees coordinate travel and add, edit, or remove co-traveler names when they share the same destination.'
       }
     ]
   },
@@ -1162,28 +1177,31 @@ const demoGalleries = {
     images: [
       {
         src: 'img/Demo/Demo-delivery_app/Screenshot_1.png',
-        title: 'สร้างใบส่งสินค้าชั่วคราว',
-        desc: 'แบบฟอร์มกรอกข้อมูลเอกสาร โครงการ วันที่ เลขที่ PR และรายการสินค้า เพื่อสร้างใบส่งสินค้าอย่างเป็นระบบ'
+        titleTh: 'สร้างใบส่งสินค้าชั่วคราว',
+        titleEn: 'Create Temporary Delivery Document',
+        descTh: 'แบบฟอร์มกรอกข้อมูลเอกสาร โครงการ วันที่ เลขที่ PR และรายการสินค้า เพื่อสร้างใบส่งสินค้าอย่างเป็นระบบ เมื่อเลือกโครงการ ระบบจะ Auto Run เลข PR ตามลำดับเอกสาร โดยประกอบด้วยรหัสโครงการ วัน/เดือน/ปี และลำดับเลขที่เอกสาร',
+        descEn: 'Form for entering document details, project, date, PR number, and item list to create delivery documents in a structured workflow. When a project is selected, the system automatically generates the PR number using project code, date, and document sequence.'
       },
       {
         src: 'img/Demo/Demo-delivery_app/Screenshot_2.png',
-        title: 'เพิ่มรายการสินค้า',
-        desc: 'รองรับการกรอกหลายรายการสินค้า จำนวน หน่วยนับ และหมายเหตุคลัง เพื่อจัดเอกสารส่งของให้ครบถ้วน'
+        titleTh: 'ประวัติเอกสารใบส่งสินค้า',
+        titleEn: 'Delivery Document History',
+        descTh: 'หน้าประวัติเอกสารสำหรับตรวจสอบข้อมูลย้อนหลัง สามารถกดดูรายละเอียดเอกสารและพิมพ์เอกสารออกมาใช้งานได้',
+        descEn: 'Document history page for reviewing previous records. Users can open document details and print documents for operational use.'
       },
       {
         src: 'img/Demo/Demo-delivery_app/Screenshot_3.png',
-        title: 'ประวัติเอกสาร',
-        desc: 'หน้ารวมประวัติใบส่งสินค้า ใช้ค้นหา ตรวจสอบ และติดตามเอกสารที่เคยสร้างไว้'
-      },
-      {
-        src: 'img/Demo/Demo-delivery_app/Screenshot_4.png',
-        title: 'รายงานข้อมูลเอกสาร',
-        desc: 'แสดงข้อมูลในรูปแบบรายงานหรือตาราง เพื่อให้ผู้ดูแลตรวจสอบเอกสารตามโครงการหรือช่วงเวลาได้ง่าย'
+        titleTh: 'Log การแก้ไขเอกสารสำหรับ Admin',
+        titleEn: 'Admin Document Edit Log',
+        descTh: 'หน้า Log สำหรับผู้ดูแลระบบ ใช้ตรวจสอบประวัติว่าใครเคยแก้ไขเอกสารใดบ้าง ช่วยเพิ่มความโปร่งใสและตรวจสอบย้อนหลังได้',
+        descEn: 'Admin log page for reviewing who edited which documents. This improves traceability, transparency, and auditability.'
       },
       {
         src: 'img/Demo/Demo-delivery_app/Screenshot_5.png',
-        title: 'หน้าจัดการสำหรับ Admin',
-        desc: 'รองรับสิทธิ์ผู้ดูแลระบบสำหรับจัดการข้อมูลหลักและดูแลกระบวนการเอกสารภายใน'
+        titleTh: 'หน้าพิมพ์เอกสาร',
+        titleEn: 'Printable Document View',
+        descTh: 'หน้าสำหรับแสดงรูปแบบเอกสารก่อนพิมพ์ เพื่อให้ผู้ใช้งานสามารถตรวจสอบรายละเอียดและพิมพ์ใบส่งสินค้าออกมาใช้งานได้',
+        descEn: 'Printable view for checking document details before printing the delivery document for actual use.'
       }
     ]
   },
@@ -1192,28 +1210,38 @@ const demoGalleries = {
     images: [
       {
         src: 'img/Demo/Demo-events/Screenshot_1.png',
-        title: 'แบบฟอร์มเพิ่มกิจกรรมบริษัท',
-        desc: 'หน้าสร้างกิจกรรมใหม่ กรอกหัวข้อ รายละเอียด วันที่ แนบไฟล์รูปภาพหรือ PDF และกำหนดกลุ่มแจ้งเตือน Email'
+        titleTh: 'แบบฟอร์มเพิ่มกิจกรรมบริษัท',
+        titleEn: 'Create Company Event Form',
+        descTh: 'หน้าสร้างกิจกรรมใหม่ กรอกหัวข้อ รายละเอียด วันที่ แนบไฟล์รูปภาพหรือ PDF และกำหนดกลุ่มแจ้งเตือน Email',
+        descEn: 'Form for creating a new company event, including title, details, date, image or PDF attachment, and email notification recipient group.'
       },
       {
         src: 'img/Demo/Demo-events/Screenshot_2.png',
-        title: 'หน้ารวมกิจกรรมและข่าวสาร',
-        desc: 'แสดงรายการกิจกรรมบริษัทในรูปแบบอ่านง่าย เพื่อให้พนักงานติดตามข่าวสารภายในองค์กร'
+        titleTh: 'รายการกิจกรรมแบบปุ่มลอยพร้อมอนิเมชัน',
+        titleEn: 'Floating Event Button with Animation',
+        descTh: 'แสดงรายการกิจกรรมบริษัทในรูปแบบปุ่มลอย พร้อมอนิเมชันเอฟเฟกต์ เพื่อให้พนักงานสังเกตเห็นได้ง่ายและติดตามข่าวสารภายในองค์กรได้สะดวกขึ้น',
+        descEn: 'Displays company events through a floating button with animation effects, making internal announcements easier for employees to notice and follow.'
       },
       {
         src: 'img/Demo/Demo-events/Screenshot_3.png',
-        title: 'รายละเอียดกิจกรรม',
-        desc: 'หน้ารายละเอียดแสดงเนื้อหากิจกรรม วันเวลา และไฟล์แนบที่เกี่ยวข้องสำหรับผู้ใช้งาน'
+        titleTh: 'รายละเอียดกิจกรรม',
+        titleEn: 'Event Detail Page',
+        descTh: 'หน้ารายละเอียดแสดงเนื้อหากิจกรรม วันเวลา และไฟล์แนบที่เกี่ยวข้องสำหรับผู้ใช้งาน',
+        descEn: 'Detail page showing event content, date and time, and related attachments for users.'
       },
       {
         src: 'img/Demo/Demo-events/Screenshot_4.png',
-        title: 'จัดการข้อมูลกิจกรรม',
-        desc: 'หน้าสำหรับผู้ดูแลแก้ไขหรือตรวจสอบข้อมูลกิจกรรมที่ประกาศไปแล้ว'
+        titleTh: 'แจ้งเตือนกิจกรรมผ่าน Email',
+        titleEn: 'Email Event Notification',
+        descTh: 'ตัวอย่างการแจ้งเตือนกิจกรรมผ่าน Email เพื่อส่งข้อมูลกิจกรรมหรือข่าวสารให้กลุ่มผู้รับที่เกี่ยวข้องรับทราบ',
+        descEn: 'Example of an email notification used to send event information or company news to relevant recipient groups.'
       },
       {
         src: 'img/Demo/Demo-events/1.png',
-        title: 'ตัวอย่างไฟล์ประกอบกิจกรรม',
-        desc: 'ภาพตัวอย่างหรือไฟล์ประกอบที่ใช้แนบกับกิจกรรม เพื่อให้ประกาศมีข้อมูลครบและเข้าใจง่าย'
+        titleTh: 'จัดการสถานะกิจกรรม',
+        titleEn: 'Event Visibility Management',
+        descTh: 'หน้าสำหรับแก้ไข ลบ และกำหนดสถานะการแสดงผลของกิจกรรม โดยผู้ดูแลสามารถเลือกซ่อนหรือแสดงกิจกรรมบนหน้า Portal ได้',
+        descEn: 'Admin page for editing, deleting, and controlling event visibility. Administrators can choose whether each event is hidden or displayed on the portal.'
       }
     ]
   },
@@ -1222,23 +1250,31 @@ const demoGalleries = {
     images: [
       {
         src: 'img/Demo/Demo-holiday_calendar/Screenshot_1.png',
-        title: 'ปฏิทินวันหยุดประจำปี',
-        desc: 'แสดงปฏิทินทั้งปีพร้อมสีแยกประเภทวันหยุด เช่น วันหยุดประจำสัปดาห์ วันหยุดธนาคาร และวันจ่ายค่าแรง'
+        titleTh: 'ปฏิทินวันหยุดประจำปี',
+        titleEn: 'Annual Holiday Calendar',
+        descTh: 'แสดงปฏิทินทั้งปีพร้อมสีแยกประเภทวันหยุด เช่น วันหยุดประจำสัปดาห์ วันหยุดธนาคาร และวันจ่ายค่าแรง',
+        descEn: 'Annual calendar view with color-coded holiday types, such as weekly holidays, bank holidays, and wage payment dates.'
       },
       {
         src: 'img/Demo/Demo-holiday_calendar/Screenshot_2.png',
-        title: 'ตัวกรองสำนักงานและโครงการ',
-        desc: 'เลือกมุมมองตามสำนักงานใหญ่หรือโครงการก่อสร้าง เพื่อให้วันหยุดตรงกับหน่วยงานที่เกี่ยวข้อง'
+        titleTh: 'ตัวกรองสำนักงานและโครงการ',
+        titleEn: 'Office and Project Filter',
+        descTh: 'เลือกมุมมองตามสำนักงานใหญ่หรือโครงการก่อสร้าง เพื่อให้วันหยุดตรงกับหน่วยงานที่เกี่ยวข้อง',
+        descEn: 'Filter for viewing holidays by head office or construction project so the displayed calendar matches the relevant work location.'
       },
       {
         src: 'img/Demo/Demo-holiday_calendar/Screenshot_3.png',
-        title: 'หน้าจัดการวันหยุด',
-        desc: 'ผู้ดูแลสามารถเพิ่ม แก้ไข และจัดประเภทวันหยุด เพื่ออัปเดตข้อมูลปฏิทินประจำปี'
+        titleTh: 'หน้าจัดการวันหยุด',
+        titleEn: 'Holiday Management',
+        descTh: 'ผู้ดูแลสามารถเพิ่ม แก้ไข และจัดประเภทวันหยุด เพื่ออัปเดตข้อมูลปฏิทินประจำปี',
+        descEn: 'Admin page for adding, editing, and categorizing holidays to keep the annual calendar up to date.'
       },
       {
         src: 'img/Demo/Demo-holiday_calendar/Screenshot_7.png',
-        title: 'มุมมองตรวจสอบข้อมูลวันหยุด',
-        desc: 'ใช้ตรวจสอบรายการวันที่สำคัญและประเภทวันหยุดก่อนเผยแพร่ให้พนักงานใช้งาน'
+        titleTh: 'มุมมองตรวจสอบข้อมูลวันหยุด',
+        titleEn: 'Holiday Data Review',
+        descTh: 'ใช้ตรวจสอบรายการวันที่สำคัญและประเภทวันหยุดก่อนเผยแพร่ให้พนักงานใช้งาน',
+        descEn: 'Review view for checking important dates and holiday types before publishing the calendar for employee use.'
       }
     ]
   }
@@ -1261,12 +1297,16 @@ function renderDemoGallery() {
   if (!gallery) return;
 
   const item = gallery.images[activeGalleryIndex];
+  const suffix = currentLang === 'en' ? 'En' : 'Th';
+  const captionTitle = item['title' + suffix] || item.titleTh || item.titleEn;
+  const captionText = item['desc' + suffix] || item.descTh || item.descEn;
+
   demoModalTitle.textContent = gallery.title;
   demoModalImage.src = item.src;
-  demoModalImage.alt = item.title;
+  demoModalImage.alt = captionTitle;
   demoModalCounter.textContent = `${activeGalleryIndex + 1} / ${gallery.images.length}`;
-  demoModalCaptionTitle.textContent = item.title;
-  demoModalCaptionText.textContent = item.desc;
+  demoModalCaptionTitle.textContent = captionTitle;
+  demoModalCaptionText.textContent = captionText;
 }
 
 function openDemoGallery(key, index = 0) {

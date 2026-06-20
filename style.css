@@ -970,6 +970,8 @@ section {
 .demo-modal-caption {
   padding: 18px 24px 22px;
   background: var(--white);
+  max-height: 210px;
+  overflow-y: auto;
 }
 .demo-modal-caption h4 {
   font-family: 'Kanit', sans-serif;
@@ -981,6 +983,7 @@ section {
   font-size: 14px;
   line-height: 1.75;
   color: var(--muted);
+  white-space: pre-line;
 }
 
 /* ===================================================
