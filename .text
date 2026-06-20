@@ -1,0 +1,31 @@
+งานตกแต่งเว็บ
+UI Design = การออกแบบหน้าตาเว็บ เช่น ปุ่ม สี การ์ด ระยะห่าง
+UX Design = การออกแบบประสบการณ์ใช้งาน เช่น กดง่าย หาเมนูง่าย ไม่งง
+Responsive Design = เว็บปรับขนาดตามมือถือ แท็บเล็ต คอม
+Card Layout = การจัดข้อมูลเป็นกล่อง ๆ แบบ project card ที่คุณมี
+Grid Layout = การจัด card หลายใบเป็นตาราง
+Modal = หน้าต่าง popup ในหน้าเดิม เช่น gallery ที่กดดูรูปโปรเจกต์
+Image Gallery = ชุดรูปภาพที่เลื่อนไปมาได้
+Carousel / Slider = รูปหรือเนื้อหาที่กดเลื่อนซ้ายขวา
+Overlay = ชั้นสีทับบนรูป เพื่อให้อ่านตัวหนังสือง่าย
+Badge = ป้ายเล็ก ๆ เช่น Demo 6 Screens
+Tag / Chip = ป้ายเทคโนโลยี เช่น PHP, SQL Server
+Hover Effect = เอฟเฟกต์ตอนเอาเมาส์ชี้ เช่น card ยกขึ้น รูปขยาย
+Animation = การเคลื่อนไหว เช่น fade in, slide in
+Micro-interaction = ลูกเล่นเล็ก ๆ ตอนกด/ชี้/เลื่อน ที่ทำให้เว็บรู้สึกดีขึ้น
+Call to Action (CTA) = ปุ่มชวนให้ทำบางอย่าง เช่น Contact Me, View Projects
+งานระบบแจ้งเตือน
+Notification System = ระบบแจ้งเตือนโดยรวม
+Line Notification = การแจ้งเตือนผ่าน LINE
+Email Notification = การแจ้งเตือนผ่านอีเมล
+Real-time Notification = แจ้งเตือนทันทีเมื่อเกิดเหตุการณ์
+Automated Notification = แจ้งเตือนอัตโนมัติ ไม่ต้องกดส่งเอง
+Event Trigger = เงื่อนไขที่ทำให้ระบบส่งแจ้งเตือน เช่น มีการจองรถใหม่
+Webhook = URL ปลายทางที่ระบบส่งข้อมูลไปหา เช่น ส่งข้อมูลไป LINE หรือระบบอื่น
+API Integration = การเชื่อมต่อระบบกับบริการอื่นผ่าน API
+Email Service Integration = เชื่อมระบบส่งอีเมล เช่น Gmail, SMTP, Google Apps Script
+SMTP = มาตรฐาน/ช่องทางส่งอีเมลจากระบบ
+Message Template = รูปแบบข้อความแจ้งเตือนที่เตรียมไว้
+Recipient Group = กลุ่มผู้รับแจ้งเตือน เช่น Admin, HR, ผู้จัดการ
+Notification Log = ประวัติการส่งแจ้งเตือน
+Delivery Status = สถานะว่าส่งสำเร็จหรือไม่สำเร็จ
