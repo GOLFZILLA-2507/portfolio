@@ -519,6 +519,19 @@ section {
 .chip-icon { font-size: 16px; }
 
 /* ===================================================
+   EDUCATION SECTION
+=================================================== */
+#education {
+  background: var(--white);
+}
+.education-timeline {
+  max-width: 860px;
+}
+.education-timeline .timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* ===================================================
    EXPERIENCE SECTION
 =================================================== */
 #experience {
